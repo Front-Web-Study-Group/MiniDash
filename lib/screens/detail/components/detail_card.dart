@@ -1,145 +1,83 @@
+import 'package:mini_dash/models/Document.dart';
 import 'package:flutter/material.dart';
-// import 'package:flutter_svg/flutter_svg.dart';
-import 'package:flutter_slidable/flutter_slidable.dart';
 
-import 'package:mini_dash/constants.dart';
 import '../../../constants.dart';
 
-class DetailDard extends StatelessWidget {
-  const DetailDard({
+class DetailCard extends StatelessWidget {
+  const DetailCard({
     Key key,
-    @required this.size,
+    @required this.document,
+    @required this.press,
   }) : super(key: key);
-  final Size size;
+
+  final Document document;
+  final VoidCallback press;
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-        padding: EdgeInsets.only(
-          left: kDefaultPadding * 0.5,
-          right: kDefaultPadding * 0.5,
-        ),
-        child: Column(
-            children: List.generate(choices.length, (index) {
-          return Center(
-            child: SelectCard(choice: choices[index]),
-          );
-        })));
-  }
-}
-
-class DetailItems extends StatelessWidget {
-  const DetailItems({
-    Key key,
-    @required this.size,
-    @required this.title,
-    @required this.descriptions,
-  }) : super(key: key);
-
-  final Size size;
-  final String title;
-  final String descriptions;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.only(
-        top: kDefaultPadding * 0.5,
-        left: kDefaultPadding * 0.5,
-        bottom: kDefaultPadding * 0.5,
-        right: kDefaultPadding * 0.5,
-      ),
-      width: size.width,
-      child: Slidable(
-        child: Row(children: <Widget>[
-          Image.asset(
-            "assets/images/bottom_img_1.png",
-            width: size.width * 0.2,
-          ),
-          SizedBox(
-            width: size.width * 0.5,
-            child: RichText(
-              overflow: TextOverflow.visible,
-              maxLines: 2,
-              text: TextSpan(
-                children: [
-                  TextSpan(
-                      text: "$title\n".toUpperCase(),
-                      style: Theme.of(context).textTheme.button),
-                  TextSpan(
-                    text: "$descriptions",
-                    style: TextStyle(
-                      color: kPrimaryColor.withOpacity(0.5),
+    return InkWell(
+      onTap: press,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(
+            horizontal: kDefaultPadding, vertical: kDefaultPadding * 0.75),
+        child: Row(
+          children: [
+            Stack(
+              children: [
+                CircleAvatar(
+                  radius: 24,
+                  backgroundImage: AssetImage(document.image),
+                ),
+                if (document.isActive)
+                  Positioned(
+                    right: 0,
+                    bottom: 0,
+                    child: Container(
+                      height: 16,
+                      width: 16,
+                      decoration: BoxDecoration(
+                        color: kPrimaryColor,
+                        shape: BoxShape.circle,
+                        border: Border.all(
+                            color: Theme.of(context).scaffoldBackgroundColor,
+                            width: 3),
+                      ),
                     ),
-                  ),
-                ],
+                  )
+              ],
+            ),
+            Expanded(
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: kDefaultPadding),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      document.name,
+                      style:
+                          TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                    ),
+                    SizedBox(height: 8),
+                    Opacity(
+                      opacity: 0.64,
+                      child: Text(
+                        document.lastMessage,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
-          ),
-          Image.asset(
-            "assets/images/bottom_img_1.png",
-            width: size.width * 0.12,
-            height: 50,
-          ),
-        ]),
-        actionExtentRatio: 1 / 5,
-        actionPane: SlidableStrechActionPane(),
-        actions: <Widget>[
-          IconSlideAction(
-            caption: 'collection',
-            color: Colors.blue,
-            icon: Icons.archive,
-            onTap: () => print('collection'),
-          ),
-          IconSlideAction(
-            caption: 'note',
-            color: Colors.blue,
-            icon: Icons.archive,
-            onTap: () => print('note'),
-          ),
-          IconSlideAction(
-            caption: 'something',
-            color: Colors.blue,
-            icon: Icons.archive,
-            onTap: () => print('something'),
-          )
-        ],
+            Opacity(
+              opacity: 0.64,
+              child: Text(document.time),
+            ),
+          ],
+        ),
       ),
     );
-  }
-}
-
-class Choice {
-  const Choice({this.title, this.icon});
-  final String title;
-  final IconData icon;
-}
-
-const List<Choice> choices = const <Choice>[
-  const Choice(title: 'Home', icon: Icons.home),
-  const Choice(title: 'Contact', icon: Icons.contacts),
-  const Choice(title: 'Map', icon: Icons.map),
-  const Choice(title: 'Phone', icon: Icons.phone),
-  const Choice(title: 'Camera', icon: Icons.camera_alt),
-  const Choice(title: 'Setting', icon: Icons.settings),
-  const Choice(title: 'Album', icon: Icons.photo_album),
-  const Choice(title: 'WiFi', icon: Icons.wifi),
-  const Choice(title: 'GPS', icon: Icons.gps_fixed),
-];
-
-class SelectCard extends StatelessWidget {
-  const SelectCard({Key key, this.choice}) : super(key: key);
-  final Choice choice;
-
-  @override
-  Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-
-    return Card(
-        child: DetailItems(
-      size: size,
-      title: choice.title,
-      descriptions: choice.title,
-    ));
   }
 }

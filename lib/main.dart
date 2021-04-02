@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mini_dash/constants.dart';
+import 'package:mini_dash/theme.dart';
 import 'package:mini_dash/screens/home/home_screen.dart';
 
 void main() {
@@ -13,12 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Plant App',
-      theme: ThemeData(
-        scaffoldBackgroundColor: kBackgroundColor,
-        primaryColor: kPrimaryColor,
-        textTheme: Theme.of(context).textTheme.apply(bodyColor: kTextColor),
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
+      theme: lightThemeData(context),
       home: HomeScreen(),
     );
   }
