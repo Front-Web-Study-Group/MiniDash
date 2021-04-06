@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:mini_dash/constants.dart';
-import '../../../constants.dart';
+import '../constants.dart';
 
 class SearchBox extends StatelessWidget {
   const SearchBox({
@@ -14,7 +14,8 @@ class SearchBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        margin: EdgeInsets.only(top: kDefaultPadding * 2.5),
+        margin: EdgeInsets.only(
+            top: kDefaultPadding * 2.5, bottom: kDefaultPadding * 0.5),
         height: 50,
         child: Container(
           alignment: Alignment.center,
@@ -38,7 +39,7 @@ class SearchBox extends StatelessWidget {
                 child: TextField(
                   onChanged: (value) {},
                   decoration: InputDecoration(
-                    hintText: "Search",
+                    hintText: "Search222",
                     hintStyle: TextStyle(
                       color: kPrimaryColor.withOpacity(0.5),
                     ),

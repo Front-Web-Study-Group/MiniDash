@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mini_dash/components/tool_box.dart';
-import 'package:mini_dash/screens/home/components/search_box.dart';
+import 'package:mini_dash/components/search_box.dart';
 
 import '../constants.dart';
 
@@ -21,7 +21,7 @@ class Header extends StatelessWidget {
           child: Stack(
             children: [
               SearchBox(size: size),
-              ToolBox(),
+              // ToolBox(),
             ],
           ),
         ),
