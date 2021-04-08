@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:mini_dash/components/card_info.dart';
 import 'package:mini_dash/constants.dart';
 import 'package:mini_dash/components/header.dart';
 
-class DetailInfo extends StatelessWidget {
+class CollectionScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -14,12 +13,12 @@ class DetailInfo extends StatelessWidget {
             Container(
               color: kPrimaryColor,
               child: Header(
-                route: 'detail',
+                route: 'collection',
               ),
             ),
             Expanded(
                 child: Column(
-              children: [CardInfo()],
+              children: [Text('CollectionScreen')],
             ))
           ],
         ),
