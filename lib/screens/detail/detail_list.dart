@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mini_dash/models/Document.dart';
 import 'package:mini_dash/screens/detail/components/detail_card.dart';
-import 'package:mini_dash/screens/detail/message_screen.dart';
+import 'package:mini_dash/screens/detail/detail_info.dart';
 
 class DetailList extends StatelessWidget {
   @override
@@ -14,7 +14,7 @@ class DetailList extends StatelessWidget {
           press: () => Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => MessagesScreen(),
+              builder: (context) => DetailInfo(),
             ),
           ),
         ),
