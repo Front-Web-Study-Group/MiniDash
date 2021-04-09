@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
 import 'package:mini_dash/constants.dart';
 import 'package:mini_dash/screens/home/home_screen.dart';
 import '../constants.dart';
@@ -69,7 +68,7 @@ class SearchBox extends StatelessWidget {
                       child: TextField(
                         onChanged: (value) {},
                         decoration: InputDecoration(
-                          hintText: "Search",
+                          hintText: "Search111",
                           hintStyle: TextStyle(
                             color: kPrimaryColor.withOpacity(0.5),
                           ),
@@ -78,12 +77,11 @@ class SearchBox extends StatelessWidget {
                         ),
                       ),
                     ),
-                    // Image.asset(
-                    //   "assets/images/search.svg",
-                    //   width: size.width * 0.12,
-                    //   height: 50,
-                    // ),
-                    // SvgPicture.asset("assets/icons/search.svg"),
+                    IconButton(
+                      icon: SvgPicture.asset("assets/icons/search.svg",
+                          color: kTextColor),
+                      onPressed: () {},
+                    ),
                   ],
                 ),
               ),

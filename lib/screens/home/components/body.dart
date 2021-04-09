@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mini_dash/constants.dart';
 import 'package:mini_dash/components/header.dart';
-import 'package:mini_dash/screens/detail/detail_list.dart';
+import 'package:mini_dash/screens/document/document_screen.dart';
 
 class Body extends StatelessWidget {
   @override
@@ -14,7 +14,7 @@ class Body extends StatelessWidget {
             route: 'home',
           ),
         ),
-        Expanded(child: DetailList())
+        Expanded(child: DocumentScreen())
       ],
     );
   }

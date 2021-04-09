@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:mini_dash/components/search_box.dart';
-import 'package:mini_dash/screens/home/home_screen.dart';
-
 import '../constants.dart';
 
 class Header extends StatelessWidget {

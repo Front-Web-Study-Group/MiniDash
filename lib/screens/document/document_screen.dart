@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:mini_dash/models/Document.dart';
-import 'package:mini_dash/screens/detail/components/detail_card.dart';
-import 'package:mini_dash/screens/detail/detail_info.dart';
+import 'package:mini_dash/screens/document/components/document_card.dart';
+import 'package:mini_dash/screens/document/document_info.dart';
 
-class DetailList extends StatelessWidget {
+class DocumentScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
       child: ListView.builder(
         itemCount: documentData.length,
-        itemBuilder: (context, index) => DetailCard(
+        itemBuilder: (context, index) => DocumentCard(
           document: documentData[index],
           press: () => Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => DetailInfo(),
+              builder: (context) => DocumentInfo(),
             ),
           ),
         ),

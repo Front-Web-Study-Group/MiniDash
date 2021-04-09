@@ -8,6 +8,11 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       body: Body(),
       bottomNavigationBar: NavBar(),
+      floatingActionButton: new FloatingActionButton(
+        onPressed: () => {},
+        tooltip: 'Increment',
+        child: new Icon(Icons.add),
+      ),
     );
   }
 }

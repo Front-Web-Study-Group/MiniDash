@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:mini_dash/screens/history/collection_screen.dart';
 import 'package:mini_dash/screens/home/home_screen.dart';
 import 'package:mini_dash/screens/user/user_screen.dart';
-
+import 'package:mini_dash/screens/userData/collection_screen.dart';
 import '../constants.dart';
 
 class NavBar extends StatelessWidget {
