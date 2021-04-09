@@ -10,44 +10,51 @@ class CardInfo extends StatelessWidget {
         actionPane: SlidableDrawerActionPane(),
         actionExtentRatio: 0.25,
         child: Container(
-          color: Colors.white,
-          child: Column(
-            children: [
-              ListTile(
-                leading: CircleAvatar(
-                  backgroundColor: Colors.indigoAccent,
-                  child: Text('3'),
-                  foregroundColor: Colors.white,
+            color: Colors.black12,
+            // width: context.size.width,
+            height: 800,
+            child: Scrollbar(
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    ListTile(
+                      leading: CircleAvatar(
+                        backgroundColor: Colors.indigoAccent,
+                        child: Text('3'),
+                        foregroundColor: Colors.white,
+                      ),
+                      title: Text('Tile n°3'),
+                      subtitle: Text('SlidableDrawerDelegate'),
+                    ),
+                    // SizedBox(
+                    //   child: WebView(
+                    //     initialUrl: Uri.dataFromString(
+                    //             '<html><body><iframe src="https://www.baidu.com"></iframe></body></html>',
+                    //             mimeType: 'text/html')
+                    //         .toString(),
+                    //     javascriptMode: JavascriptMode.unrestricted,
+                    //   ),
+                    // ),
+                  ],
                 ),
-                title: Text('Tile n°3'),
-                subtitle: Text('SlidableDrawerDelegate'),
               ),
-              // SizedBox(
-              //   child: WebView(
-              //     initialUrl: Uri.dataFromString(
-              //             '<html><body><iframe src="https://www.baidu.com"></iframe></body></html>',
-              //             mimeType: 'text/html')
-              //         .toString(),
-              //     javascriptMode: JavascriptMode.unrestricted,
-              //   ),
-              // ),
-            ],
-          ),
-        ),
+            )),
         actions: <Widget>[
-          IconSlideAction(
-            caption: 'Archive',
-            color: Colors.blue,
-            icon: Icons.archive,
-            onTap: () => print('Archive'),
+          Column(
+            children: [
+              Text('API 1'),
+              Text('API 2'),
+              Text('API 3'),
+            ],
           )
         ],
         secondaryActions: <Widget>[
-          IconSlideAction(
-            caption: 'More',
-            color: Colors.black45,
-            icon: Icons.more_horiz,
-            onTap: () => print('More'),
+          Column(
+            children: [
+              Text('Note 1'),
+              Text('Note 2'),
+              Text('Note 3'),
+            ],
           )
         ],
       ),

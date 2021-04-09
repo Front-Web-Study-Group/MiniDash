@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mini_dash/constants.dart';
-import 'package:mini_dash/components/header.dart';
 
 class NoteScreen extends StatelessWidget {
   @override
@@ -8,12 +6,6 @@ class NoteScreen extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: [
-          Container(
-            color: kPrimaryColor,
-            child: Header(
-              route: 'note',
-            ),
-          ),
           Expanded(
               child: Column(
             children: [Text('NoteScreen')],

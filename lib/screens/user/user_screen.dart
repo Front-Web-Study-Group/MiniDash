@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:mini_dash/constants.dart';
 import 'package:mini_dash/components/header.dart';
 import 'package:mini_dash/models/User.dart';
-import 'package:mini_dash/screens/document/document_info.dart';
 import 'package:mini_dash/screens/user/component/user_card.dart';
+import 'package:mini_dash/screens/user/login_screen.dart';
 
 class UserScreen extends StatelessWidget {
   @override
@@ -26,7 +26,7 @@ class UserScreen extends StatelessWidget {
               press: () => Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => DocumentInfo(),
+                  builder: (context) => LoginScreen(),
                 ),
               ),
             ),
