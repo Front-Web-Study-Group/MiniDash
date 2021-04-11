@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mini_dash/components/card_info.dart';
+import 'package:mini_dash/components/tool_box.dart';
 import 'package:mini_dash/constants.dart';
 import 'package:mini_dash/components/header.dart';
 
@@ -23,6 +24,7 @@ class DocumentInfo extends StatelessWidget {
             ))
           ],
         ),
+        floatingActionButton: ToolBox(),
       ),
     );
   }

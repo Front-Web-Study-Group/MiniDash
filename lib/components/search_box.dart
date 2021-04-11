@@ -68,7 +68,7 @@ class SearchBox extends StatelessWidget {
                       child: TextField(
                         onChanged: (value) {},
                         decoration: InputDecoration(
-                          hintText: "Search111",
+                          hintText: "Search",
                           hintStyle: TextStyle(
                             color: kPrimaryColor.withOpacity(0.5),
                           ),

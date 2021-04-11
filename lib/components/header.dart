@@ -24,8 +24,6 @@ class Header extends StatelessWidget {
           child: Stack(
             children: [
               SearchBox(size: size, route: route),
-
-              // ToolBox(),
             ],
           ),
         ),

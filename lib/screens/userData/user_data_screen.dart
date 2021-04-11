@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mini_dash/components/header.dart';
 import 'package:mini_dash/screens/userData/collection_screen.dart';
 import 'package:mini_dash/screens/userData/note_screen.dart';
 
@@ -15,7 +16,7 @@ class UserDataScreen extends StatelessWidget {
               Tab(text: '笔记'),
             ],
           ),
-          title: Text('Tabs Demo'),
+          title: Text('用户数据中心'),
         ),
         body: TabBarView(
           children: [

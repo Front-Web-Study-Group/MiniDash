@@ -6,30 +6,69 @@ class Bookshelf extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Flow(
-        delegate: TestFlowDelegate(margin: EdgeInsets.all(10.0)),
-        children: <Widget>[
-          Container(
-            width: 120.0,
-            height: 160.0,
-            color: Colors.red,
-            child: IconButton(
-              icon: SvgPicture.asset("assets/icons/help.svg"),
-              onPressed: () => Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => DocumentInfo(),
+      body: GridView(
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 3, //横轴三个子widget
+              childAspectRatio: 1.0 //宽高比为1时，子widget
+              ),
+          children: <Widget>[
+            Container(
+              width: 120.0,
+              height: 160.0,
+              color: Colors.red,
+              child: IconButton(
+                icon: SvgPicture.asset("assets/icons/help.svg"),
+                onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => DocumentInfo(),
+                  ),
                 ),
               ),
             ),
-          ),
-        ],
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => {},
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ),
+            Container(
+              width: 120.0,
+              height: 160.0,
+              color: Colors.blue,
+              child: IconButton(
+                icon: SvgPicture.asset("assets/icons/help.svg"),
+                onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => DocumentInfo(),
+                  ),
+                ),
+              ),
+            ),
+            Container(
+              width: 120.0,
+              height: 160.0,
+              color: Colors.yellow,
+              child: IconButton(
+                icon: SvgPicture.asset("assets/icons/help.svg"),
+                onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => DocumentInfo(),
+                  ),
+                ),
+              ),
+            ),
+            Container(
+              width: 120.0,
+              height: 160.0,
+              color: Colors.green,
+              child: IconButton(
+                icon: SvgPicture.asset("assets/icons/help.svg"),
+                onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => DocumentInfo(),
+                  ),
+                ),
+              ),
+            ),
+          ]),
     );
   }
 }

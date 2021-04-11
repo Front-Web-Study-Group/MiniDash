@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:mini_dash/screens/document/document_screen.dart';
 
-class NoteScreen extends StatelessWidget {
+class UpdateScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text("版本信息"),
+      ),
       body: Column(
         children: [
           Expanded(
               child: Column(
-            children: [DocumentScreen()],
+            children: [Text('UpdateScreen')],
           ))
         ],
       ),

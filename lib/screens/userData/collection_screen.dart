@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mini_dash/screens/document/document_screen.dart';
 
 class CollectionScreen extends StatelessWidget {
   @override
@@ -8,7 +9,7 @@ class CollectionScreen extends StatelessWidget {
         children: [
           Expanded(
               child: Column(
-            children: [Text('CollectionScreen')],
+            children: [DocumentScreen()],
           ))
         ],
       ),
