@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:mini_dash/screens/note/note_screen.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class CardInfo extends StatelessWidget {
@@ -48,15 +49,7 @@ class CardInfo extends StatelessWidget {
             ],
           )
         ],
-        secondaryActions: <Widget>[
-          Column(
-            children: [
-              Text('Note 1'),
-              Text('Note 2'),
-              Text('Note 3'),
-            ],
-          )
-        ],
+        secondaryActions: <Widget>[NoteScreen()],
       ),
     );
   }

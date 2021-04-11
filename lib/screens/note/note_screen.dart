@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:mini_dash/screens/document/document_screen.dart';
 
-class CollectioListScreen extends StatelessWidget {
+class NoteScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
         children: [
-          Expanded(
-              child: Column(
-            children: [DocumentScreen()],
-          ))
+          Text('Note 1'),
+          Text('Note 2'),
+          Text('Note 3'),
         ],
       ),
     );
