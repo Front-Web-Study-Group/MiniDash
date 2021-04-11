@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mini_dash/utils/event_bus.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -65,6 +66,10 @@ class _LoginScreenState extends State<LoginScreen> {
                           // 通过后再提交数据。
                           if ((_formKey.currentState as FormState).validate()) {
                             //验证通过提交数据
+
+                            eventBus.on("login", (arg) {
+                              // do something
+                            });
                           }
                         },
                       ),

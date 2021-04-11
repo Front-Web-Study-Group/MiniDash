@@ -102,17 +102,15 @@ Future<bool> _showSetupPanel({contexts}) {
             Row(
               children: <Widget>[
                 Text("同时删除子目录？"),
-                StatefulBuilder(
-                  builder: (context, _setState) {
+                // 通过Builder来获得构建Checkbox的`context`，
+                // 这是一种常用的缩小`context`范围的方式
+                Builder(
+                  builder: (BuildContext context) {
                     return Checkbox(
-                      value: _withTree, //默认不选中
+                      value: _withTree,
                       onChanged: (bool value) {
-                        //_setState方法实际就是该StatefulWidget的setState方法，
-                        //调用后builder方法会重新被调用
-                        _setState(() {
-                          //更新选中状态
-                          _withTree = !_withTree;
-                        });
+                        (context as Element).markNeedsBuild();
+                        _withTree = !_withTree;
                       },
                     );
                   },
