@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mini_dash/components/header.dart';
 import 'package:mini_dash/screens/userData/collection_screen.dart';
 import 'package:mini_dash/screens/userData/note_screen.dart';
 
