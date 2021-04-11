@@ -6,6 +6,10 @@ class UpdateScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text("版本信息"),
+        leading: new IconButton(
+          icon: new Icon(Icons.arrow_back),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
       ),
       body: Column(
         children: [

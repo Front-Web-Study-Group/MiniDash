@@ -16,6 +16,10 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Login"),
+        leading: new IconButton(
+          icon: new Icon(Icons.arrow_back),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 24.0),

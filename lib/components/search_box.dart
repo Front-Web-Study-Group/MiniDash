@@ -21,17 +21,21 @@ class SearchBox extends StatelessWidget {
           return SizedBox();
           break;
         default:
-          return Expanded(
-            flex: 1,
-            child: IconButton(
-              icon: SvgPicture.asset("assets/icons/home.svg"),
-              onPressed: () => Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => HomeScreen(),
+          return Column(
+            children: <Widget>[
+              Expanded(
+                flex: 1,
+                child: IconButton(
+                  icon: SvgPicture.asset("assets/icons/home.svg"),
+                  onPressed: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => HomeScreen(),
+                    ),
+                  ),
                 ),
               ),
-            ),
+            ],
           );
       }
     }
