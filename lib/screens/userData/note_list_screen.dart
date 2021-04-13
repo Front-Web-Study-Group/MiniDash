@@ -21,8 +21,8 @@ class NoteListScreen extends StatelessWidget {
                     builder: (context) => Scaffold(
                       appBar: AppBar(
                         title: Text('用户笔记'),
-                        leading: new IconButton(
-                          icon: new Icon(Icons.arrow_back),
+                        leading: IconButton(
+                          icon: Icon(Icons.arrow_back),
                           onPressed: () => Navigator.of(context).pop(),
                         ),
                       ),

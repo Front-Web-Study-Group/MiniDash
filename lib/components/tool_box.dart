@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mini_dash/models/ToolList.dart';
 import '../constants.dart';
 
@@ -48,7 +47,7 @@ class _ToolBox extends State<ToolBox> {
           EdgeInsets.only(bottom: kDefaultPadding, right: kDefaultPadding / 10),
       height: 50,
       child: IconButton(
-        icon: Icon(Icons.account_balance),
+        icon: Icon(Icons.apps),
         onPressed: () async {
           int type = await _showToolBox();
           print(type);
