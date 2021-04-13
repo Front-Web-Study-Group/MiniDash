@@ -4,6 +4,7 @@ import 'package:mini_dash/constants.dart';
 import 'package:mini_dash/components/header.dart';
 import 'package:mini_dash/models/User.dart';
 import 'package:mini_dash/screens/user/component/user_card.dart';
+import 'package:mini_dash/utils/download_chunk.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class UserScreen extends StatelessWidget {
@@ -38,6 +39,20 @@ class UserScreen extends StatelessWidget {
         IconButton(
           icon: SvgPicture.asset("assets/icons/home.svg"),
           onPressed: _incrementCounter,
+        ),
+        IconButton(
+          icon: SvgPicture.asset("assets/icons/help.svg"),
+          onPressed: () async {
+            var url =
+                "http://download.dcloud.net.cn/HBuilder.9.0.2.macosx_64.dmg";
+            var savePath = "./example/HBuilder.9.0.2.macosx_64.dmg";
+            await downloadWithChunks(url, savePath,
+                onReceiveProgress: (received, total) {
+              if (total != -1) {
+                print("${(received / total * 100).floor()}%");
+              }
+            });
+          },
         ),
         // Center(
         //   child: FutureBuilder<String>(
