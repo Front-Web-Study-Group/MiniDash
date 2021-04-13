@@ -35,7 +35,7 @@ class NoteListScreen extends StatelessWidget {
                           ),
                         ),
                         tooltip: 'Increment',
-                        child: Text('查看原文'),
+                        child: Icon(Icons.list_alt),
                       ),
                     ),
                   ),
