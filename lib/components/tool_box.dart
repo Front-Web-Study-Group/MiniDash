@@ -32,9 +32,7 @@ class _ToolBox extends State<ToolBox> {
             itemCount: toolConfigList.length,
             itemBuilder: (BuildContext context, int index) {
               return IconButton(
-                  icon: SvgPicture.asset(
-                    toolConfigList[index].image,
-                  ),
+                  icon: toolConfigList[index].icon,
                   onPressed: () {
                     toolConfigList[index].press(context);
                     Navigator.of(context).pop();

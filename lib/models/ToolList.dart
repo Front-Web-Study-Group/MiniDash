@@ -1,46 +1,47 @@
 import 'package:flutter/material.dart';
 
 class ToolConfig {
-  final String name, image;
+  final String name;
+  final Icon icon;
   final Function press;
   final BuildContext context;
 
-  ToolConfig({this.name, this.image, this.press, this.context});
+  ToolConfig({this.name, this.icon, this.press, this.context});
 }
 
 List toolConfigList = [
   ToolConfig(
-      image: "assets/icons/help.svg",
+      icon: Icon(Icons.help_outline),
       press: (context) async {
         int type = await _showHelpPanel(contexts: context);
         print(type);
       }),
   ToolConfig(
-      image: "assets/icons/setup.svg",
+      icon: Icon(Icons.settings),
       press: (context) async {
         bool type = await _showSetupPanel(contexts: context);
         print(type);
       }),
   ToolConfig(
-      image: "assets/icons/upload.svg",
+      icon: Icon(Icons.arrow_circle_up),
       press: (context) async {
         int type = await _showUploadPanel(contexts: context);
         print(type);
       }),
   ToolConfig(
-      image: "assets/icons/collect.svg",
+      icon: Icon(Icons.favorite),
       press: (context) async {
         int type = await _showCollectPanel(contexts: context);
         print(type);
       }),
   ToolConfig(
-      image: "assets/icons/info.svg",
+      icon: Icon(Icons.wysiwyg),
       press: (context) async {
         int type = await _showInfoPanel(contexts: context);
         print(type);
       }),
   ToolConfig(
-      image: "assets/icons/calendar.svg",
+      icon: Icon(Icons.date_range),
       press: (context) async {
         DateTime type = await _showCalendarPanel(contexts: context);
         print(type);

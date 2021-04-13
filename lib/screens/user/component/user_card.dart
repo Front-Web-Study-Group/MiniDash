@@ -1,4 +1,3 @@
-import 'package:flutter_svg/svg.dart';
 import 'package:flutter/material.dart';
 import 'package:mini_dash/models/User.dart';
 import 'package:mini_dash/screens/document/document_info.dart';
@@ -48,7 +47,7 @@ class UserCard extends StatelessWidget {
               ),
             ),
             IconButton(
-              icon: SvgPicture.asset("assets/icons/help.svg"),
+              icon: Icon(Icons.search),
               onPressed: () => Navigator.push(
                 context,
                 MaterialPageRoute(
