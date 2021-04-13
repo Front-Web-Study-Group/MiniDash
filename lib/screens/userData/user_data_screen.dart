@@ -16,8 +16,8 @@ class UserDataScreen extends StatelessWidget {
             ],
           ),
           title: Text('用户数据中心'),
-          leading: new IconButton(
-            icon: new Icon(Icons.arrow_back),
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back),
             onPressed: () => Navigator.of(context).pop(),
           ),
         ),

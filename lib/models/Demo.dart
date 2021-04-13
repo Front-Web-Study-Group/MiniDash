@@ -32,4 +32,31 @@ List demoConfigList = [
       ),
     ),
   ),
+  Demo(
+    name: "json",
+    press: (context) => Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => FileOperationRoute(),
+      ),
+    ),
+  ),
+  Demo(
+    name: "localization",
+    press: (context) => Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => FileOperationRoute(),
+      ),
+    ),
+  ),
+  Demo(
+    name: "localization",
+    press: (context) => Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => FileOperationRoute(),
+      ),
+    ),
+  ),
 ];

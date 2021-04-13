@@ -50,7 +50,7 @@ class _ToolBox extends State<ToolBox> {
           EdgeInsets.only(bottom: kDefaultPadding, right: kDefaultPadding / 10),
       height: 50,
       child: IconButton(
-        icon: SvgPicture.asset("assets/icons/menu.svg"),
+        icon: Icon(Icons.account_balance),
         onPressed: () async {
           int type = await _showToolBox();
           print(type);

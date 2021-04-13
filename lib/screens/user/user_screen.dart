@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:mini_dash/constants.dart';
 import 'package:mini_dash/components/header.dart';
 import 'package:mini_dash/models/User.dart';
 import 'package:mini_dash/screens/user/component/user_card.dart';
-import 'package:mini_dash/utils/download_chunk.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class UserScreen extends StatelessWidget {
   Future<String> mockNetworkData() async {
@@ -18,13 +15,6 @@ class UserScreen extends StatelessWidget {
     });
   }
 
-  _incrementCounter() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    int counter = (prefs.getInt('counter') ?? 0) + 1;
-    print('Pressed $counter times.');
-    await prefs.setInt('counter', counter);
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,24 +25,6 @@ class UserScreen extends StatelessWidget {
           child: Header(
             route: 'user',
           ),
-        ),
-        IconButton(
-          icon: SvgPicture.asset("assets/icons/home.svg"),
-          onPressed: _incrementCounter,
-        ),
-        IconButton(
-          icon: SvgPicture.asset("assets/icons/help.svg"),
-          onPressed: () async {
-            var url =
-                "http://download.dcloud.net.cn/HBuilder.9.0.2.macosx_64.dmg";
-            var savePath = "./example/HBuilder.9.0.2.macosx_64.dmg";
-            await downloadWithChunks(url, savePath,
-                onReceiveProgress: (received, total) {
-              if (total != -1) {
-                print("${(received / total * 100).floor()}%");
-              }
-            });
-          },
         ),
         // Center(
         //   child: FutureBuilder<String>(

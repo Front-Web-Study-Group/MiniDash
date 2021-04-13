@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mini_dash/screens/home/home_screen.dart';
 import 'package:mini_dash/screens/user/user_screen.dart';
 import 'package:mini_dash/screens/userData/user_data_screen.dart';
@@ -33,7 +32,7 @@ class NavBar extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           IconButton(
-            icon: SvgPicture.asset("assets/icons/home.svg"),
+            icon: Icon(Icons.account_balance),
             onPressed: () => Navigator.push(
               context,
               MaterialPageRoute(
@@ -42,7 +41,7 @@ class NavBar extends StatelessWidget {
             ),
           ),
           IconButton(
-            icon: SvgPicture.asset("assets/icons/menu.svg"),
+            icon: Icon(Icons.dashboard),
             onPressed: () => Navigator.push(
               context,
               MaterialPageRoute(
@@ -51,7 +50,7 @@ class NavBar extends StatelessWidget {
             ),
           ),
           IconButton(
-            icon: SvgPicture.asset("assets/icons/user.svg"),
+            icon: Icon(Icons.accessible),
             onPressed: () => Navigator.push(
               context,
               MaterialPageRoute(

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mini_dash/constants.dart';
 import 'package:mini_dash/screens/home/home_screen.dart';
 import '../constants.dart';
@@ -26,7 +25,7 @@ class SearchBox extends StatelessWidget {
               Expanded(
                 flex: 1,
                 child: IconButton(
-                  icon: SvgPicture.asset("assets/icons/home.svg"),
+                  icon: Icon(Icons.account_balance),
                   onPressed: () => Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -82,8 +81,7 @@ class SearchBox extends StatelessWidget {
                       ),
                     ),
                     IconButton(
-                      icon: SvgPicture.asset("assets/icons/search.svg",
-                          color: kTextColor),
+                      icon: Icon(Icons.search),
                       onPressed: () {},
                     ),
                   ],

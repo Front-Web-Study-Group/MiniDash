@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:mini_dash/screens/document/document_info.dart';
 
 class Bookshelf extends StatelessWidget {
@@ -17,7 +16,7 @@ class Bookshelf extends StatelessWidget {
               height: 160.0,
               color: Colors.red,
               child: IconButton(
-                icon: SvgPicture.asset("assets/icons/help.svg"),
+                icon: Icon(Icons.receipt_long),
                 onPressed: () => Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -31,7 +30,7 @@ class Bookshelf extends StatelessWidget {
               height: 160.0,
               color: Colors.blue,
               child: IconButton(
-                icon: SvgPicture.asset("assets/icons/help.svg"),
+                icon: Icon(Icons.receipt_long),
                 onPressed: () => Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -45,7 +44,7 @@ class Bookshelf extends StatelessWidget {
               height: 160.0,
               color: Colors.yellow,
               child: IconButton(
-                icon: SvgPicture.asset("assets/icons/help.svg"),
+                icon: Icon(Icons.receipt_long),
                 onPressed: () => Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -59,7 +58,7 @@ class Bookshelf extends StatelessWidget {
               height: 160.0,
               color: Colors.green,
               child: IconButton(
-                icon: SvgPicture.asset("assets/icons/help.svg"),
+                icon: Icon(Icons.receipt_long),
                 onPressed: () => Navigator.push(
                   context,
                   MaterialPageRoute(
