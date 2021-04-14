@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:mini_dash/components/search_input.dart';
 import 'package:mini_dash/constants.dart';
 import 'package:mini_dash/components/header.dart';
 import 'package:mini_dash/models/User.dart';
 import 'package:mini_dash/screens/user/component/user_card.dart';
 
 class UserScreen extends StatelessWidget {
+  const UserScreen({Key key, this.dropdownValue}) : super(key: key);
+
   Future<String> mockNetworkData() async {
     return Future.delayed(Duration(seconds: 2), () => "我是从互联网上获取的数据");
   }
@@ -14,6 +17,8 @@ class UserScreen extends StatelessWidget {
       return i;
     });
   }
+
+  final String dropdownValue;
 
   @override
   Widget build(BuildContext context) {
@@ -26,6 +31,7 @@ class UserScreen extends StatelessWidget {
             route: 'user',
           ),
         ),
+
         // Center(
         //   child: FutureBuilder<String>(
         //     future: mockNetworkData(),
@@ -64,6 +70,7 @@ class UserScreen extends StatelessWidget {
         //     return null; // unreachable
         //   },
         // ),
+        // SingleChildScrollView(child: SearchInput()),
         Expanded(
             child: ListView.builder(
           itemCount: userConfigList.length,
@@ -76,4 +83,6 @@ class UserScreen extends StatelessWidget {
       ],
     ));
   }
+
+  void setState(Null Function() param0) {}
 }

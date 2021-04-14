@@ -9,8 +9,8 @@ class Bookshelf extends StatelessWidget {
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.only(
-          left: kDefaultPadding / 5,
-          right: kDefaultPadding / 5,
+          left: kDefaultPadding / 3,
+          right: kDefaultPadding / 3,
         ),
         child: GridView.builder(
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(

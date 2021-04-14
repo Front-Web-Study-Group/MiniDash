@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mini_dash/components/search_input.dart';
 import 'package:mini_dash/constants.dart';
 import 'package:mini_dash/screens/home/home_screen.dart';
 import '../constants.dart';
@@ -46,6 +47,7 @@ class SearchBox extends StatelessWidget {
         child: Row(
           children: [
             backBtn(route),
+            // SearchInput(),
             Expanded(
               flex: 6,
               child: Container(

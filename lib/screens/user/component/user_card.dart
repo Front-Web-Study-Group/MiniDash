@@ -26,8 +26,10 @@ class UserCard extends StatelessWidget {
               children: [
                 CircleAvatar(
                   radius: 24,
-                  backgroundImage: AssetImage(document.image),
+                  backgroundColor: kCardBackgroundColor,
                 ),
+                Positioned(
+                    top: 0, left: 0, right: 0, bottom: 0, child: document.icon)
               ],
             ),
             Expanded(
@@ -47,7 +49,7 @@ class UserCard extends StatelessWidget {
               ),
             ),
             IconButton(
-              icon: Icon(Icons.search),
+              icon: Icon(Icons.arrow_forward_ios),
               onPressed: () => Navigator.push(
                 context,
                 MaterialPageRoute(

@@ -6,12 +6,13 @@ import 'package:mini_dash/screens/user/setup_screen.dart';
 import 'package:mini_dash/screens/user/update_screen.dart';
 
 class User {
-  final String name, image;
+  final String name;
+  final Icon icon;
   final Function press;
 
   User({
     this.name,
-    this.image,
+    this.icon,
     this.press,
   });
 }
@@ -19,7 +20,7 @@ class User {
 List userConfigList = [
   User(
     name: "登陆",
-    image: "assets/images/image_1.png",
+    icon: Icon(Icons.insert_emoticon_outlined),
     press: (context) => Navigator.push(
       context,
       MaterialPageRoute(
@@ -29,7 +30,7 @@ List userConfigList = [
   ),
   User(
     name: "反馈",
-    image: "assets/images/image_1.png",
+    icon: Icon(Icons.campaign),
     press: (context) => Navigator.push(
       context,
       MaterialPageRoute(
@@ -39,7 +40,7 @@ List userConfigList = [
   ),
   User(
     name: "版本",
-    image: "assets/images/image_1.png",
+    icon: Icon(Icons.pending_actions),
     press: (context) => Navigator.push(
       context,
       MaterialPageRoute(
@@ -49,7 +50,7 @@ List userConfigList = [
   ),
   User(
     name: "主题",
-    image: "assets/images/image_1.png",
+    icon: Icon(Icons.settings_input_svideo),
     press: (context) => Navigator.push(
       context,
       MaterialPageRoute(
@@ -59,7 +60,7 @@ List userConfigList = [
   ),
   User(
     name: "设置",
-    image: "assets/images/image_1.png",
+    icon: Icon(Icons.build),
     press: (context) => Navigator.push(
       context,
       MaterialPageRoute(
@@ -69,7 +70,7 @@ List userConfigList = [
   ),
   User(
     name: "退出",
-    image: "assets/images/image_1.png",
+    icon: Icon(Icons.power_settings_new),
     press: (context) => Navigator.push(
       context,
       MaterialPageRoute(

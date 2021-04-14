@@ -11,8 +11,6 @@ class Header extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-
     return Container(
       child: Positioned(
         top: 0,
@@ -23,7 +21,7 @@ class Header extends StatelessWidget {
           color: kPrimaryColor.withOpacity(0.2),
           child: Stack(
             children: [
-              SearchBox(size: size, route: route),
+              SearchBox(),
             ],
           ),
         ),
