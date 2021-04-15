@@ -79,3 +79,88 @@ List userConfigList = [
     ),
   ),
 ];
+
+class FeedbackConfig {
+  final String label;
+  final List<User> list;
+
+  FeedbackConfig({
+    this.label,
+    this.list,
+  });
+}
+
+List feedbackConfigList1 = [
+  User(
+    name: "反馈1",
+    icon: Icon(Icons.insert_emoticon_outlined),
+    press: (context) => Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => LoginScreen(),
+      ),
+    ),
+  ),
+  User(
+    name: "反馈2",
+    icon: Icon(Icons.campaign),
+    press: (context) => Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => LoginScreen(),
+      ),
+    ),
+  ),
+];
+
+List feedbackConfigList2 = [
+  User(
+    name: "反馈11",
+    icon: Icon(Icons.insert_emoticon_outlined),
+    press: (context) => Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => LoginScreen(),
+      ),
+    ),
+  ),
+  User(
+    name: "反馈22",
+    icon: Icon(Icons.campaign),
+    press: (context) => Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => LoginScreen(),
+      ),
+    ),
+  ),
+];
+
+List feedbackConfigList3 = [
+  User(
+    name: "反馈111",
+    icon: Icon(Icons.insert_emoticon_outlined),
+    press: (context) => Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => LoginScreen(),
+      ),
+    ),
+  ),
+  User(
+    name: "反馈222",
+    icon: Icon(Icons.campaign),
+    press: (context) => Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => LoginScreen(),
+      ),
+    ),
+  ),
+];
+
+List feedbackConfigList = [
+  FeedbackConfig(label: '用户反馈1', list: feedbackConfigList1),
+  FeedbackConfig(label: '用户反馈2', list: feedbackConfigList2),
+  FeedbackConfig(label: '用户反馈3', list: feedbackConfigList3),
+];
