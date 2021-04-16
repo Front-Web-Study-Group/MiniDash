@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:mini_dash/screens/user/component/feedback_detail.dart';
 import 'package:mini_dash/screens/user/feedback_screen.dart';
 import 'package:mini_dash/screens/user/login_screen.dart';
-import 'package:mini_dash/screens/user/theme_screen.dart';
+import 'package:mini_dash/screens/user/setup/clear_cache_screen.dart';
+import 'package:mini_dash/screens/user/setup/network_diagnosis_screen.dart';
+import 'package:mini_dash/screens/user/setup/theme_screen.dart';
+import 'package:mini_dash/screens/user/setup/update_screen.dart';
 import 'package:mini_dash/screens/user/setup_screen.dart';
-import 'package:mini_dash/screens/user/update_screen.dart';
 
 class User {
   final String name;
@@ -50,16 +52,45 @@ List userConfigList = [
     ),
   ),
   User(
-    name: "退出",
-    icon: Icon(Icons.power_settings_new),
-    press: (context) => Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => LoginScreen(),
-      ),
-    ),
-  ),
+      name: "退出",
+      icon: Icon(Icons.power_settings_new),
+      press: (context) async {
+        bool type = await _logoutPanel(contexts: context);
+        print(type);
+      }),
 ];
+
+// 退出登陆
+Future<bool> _logoutPanel({contexts}) {
+  BuildContext context = contexts;
+  return showDialog(
+    context: context,
+    builder: (context) {
+      return AlertDialog(
+        title: Text("退出"),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            Text("确认退出登陆么？"),
+          ],
+        ),
+        actions: <Widget>[
+          FlatButton(
+            child: Text("取消"),
+            onPressed: () => Navigator.of(context).pop(), //关闭对话框
+          ),
+          FlatButton(
+            child: Text("确认"),
+            onPressed: () {
+              // ... 执行删除操作
+              Navigator.of(context).pop(true); //关闭对话框
+            },
+          ),
+        ],
+      );
+    },
+  );
+}
 
 class FeedbackConfig {
   final String label;
@@ -157,7 +188,7 @@ List setupConfigList = [
     press: (context) => Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => FeedbackDetail(),
+        builder: (context) => NetworkDiagnosisScreen(),
       ),
     ),
   ),
@@ -167,7 +198,7 @@ List setupConfigList = [
     press: (context) => Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => FeedbackDetail(),
+        builder: (context) => ClearCacheScreen(),
       ),
     ),
   ),
