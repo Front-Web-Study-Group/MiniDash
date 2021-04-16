@@ -1,10 +1,9 @@
 import 'package:mini_dash/models/Document.dart';
 import 'package:flutter/material.dart';
-
 import '../../../constants.dart';
 
-class DetailCard extends StatelessWidget {
-  const DetailCard({
+class DocumentCard extends StatelessWidget {
+  const DocumentCard({
     Key key,
     @required this.document,
     @required this.press,

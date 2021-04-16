@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-
+import 'package:mini_dash/components/search_input.dart';
 import 'package:mini_dash/constants.dart';
 import 'package:mini_dash/screens/home/home_screen.dart';
 import '../constants.dart';
@@ -22,17 +21,21 @@ class SearchBox extends StatelessWidget {
           return SizedBox();
           break;
         default:
-          return Expanded(
-            flex: 1,
-            child: IconButton(
-              icon: SvgPicture.asset("assets/icons/home.svg"),
-              onPressed: () => Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => HomeScreen(),
+          return Column(
+            children: <Widget>[
+              Expanded(
+                flex: 1,
+                child: IconButton(
+                  icon: Icon(Icons.account_balance),
+                  onPressed: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => HomeScreen(),
+                    ),
+                  ),
                 ),
               ),
-            ),
+            ],
           );
       }
     }
@@ -44,6 +47,7 @@ class SearchBox extends StatelessWidget {
         child: Row(
           children: [
             backBtn(route),
+            // SearchInput(),
             Expanded(
               flex: 6,
               child: Container(
@@ -78,12 +82,10 @@ class SearchBox extends StatelessWidget {
                         ),
                       ),
                     ),
-                    // Image.asset(
-                    //   "assets/images/search.svg",
-                    //   width: size.width * 0.12,
-                    //   height: 50,
-                    // ),
-                    // SvgPicture.asset("assets/icons/search.svg"),
+                    IconButton(
+                      icon: Icon(Icons.search),
+                      onPressed: () {},
+                    ),
                   ],
                 ),
               ),
