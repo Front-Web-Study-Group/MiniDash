@@ -43,7 +43,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                 bottom: kDefaultPadding * 2,
                 child: GestureDetector(
                     onTap: () {
-                      Future<int> type = _showHelpPanel(contexts: context);
+                      Future<int> type = _feedbackPanel(contexts: context);
                       print(type);
                     },
                     child: Container(
@@ -72,7 +72,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
   }
 
   // 帮助
-  Future<int> _showHelpPanel({contexts}) {
+  Future<int> _feedbackPanel({contexts}) {
     BuildContext context = contexts;
     return showDialog(
       context: context,

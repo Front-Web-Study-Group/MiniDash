@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:mini_dash/models/User.dart';
+import 'component/user_card.dart';
 
 class SetupScreen extends StatelessWidget {
   @override
@@ -11,14 +13,21 @@ class SetupScreen extends StatelessWidget {
           onPressed: () => Navigator.of(context).pop(),
         ),
       ),
-      body: Column(
+      body: SingleChildScrollView(
+          child: Column(
         children: [
-          Expanded(
-              child: Column(
-            children: [Text('SetupScreen')],
-          ))
+          ListView.builder(
+            shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
+            itemCount: setupConfigList.length,
+            itemBuilder: (context, index) => UserCard(
+                document: setupConfigList[index],
+                press: () {
+                  setupConfigList[index].press(context);
+                }),
+          ),
         ],
-      ),
+      )),
     );
   }
 }
