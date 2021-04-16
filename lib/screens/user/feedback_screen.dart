@@ -38,19 +38,35 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
               ),
             ),
             Positioned(
-                left: kDefaultPadding,
+                left: kDefaultPadding / 2,
+                right: kDefaultPadding / 2,
                 bottom: kDefaultPadding * 2,
-                child: Container(
-                  color: kCardBackgroundColor,
-                  child: GestureDetector(
-                      onTap: () {
-                        Future<int> type = _showHelpPanel(contexts: context);
-                        print(type);
-                      },
+                child: GestureDetector(
+                    onTap: () {
+                      Future<int> type = _showHelpPanel(contexts: context);
+                      print(type);
+                    },
+                    child: Container(
+                      alignment: Alignment.center,
+                      margin: EdgeInsets.all(0),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: kDefaultPadding),
+                      height: 54,
+                      decoration: BoxDecoration(
+                        color: kCardBackgroundColor,
+                        borderRadius: BorderRadius.circular(20),
+                        boxShadow: [
+                          BoxShadow(
+                            offset: Offset(0, 10),
+                            blurRadius: 50,
+                            color: kPrimaryColor.withOpacity(0.23),
+                          ),
+                        ],
+                      ),
                       child: Text(
                         '我要反馈',
-                      )),
-                )),
+                      ),
+                    ))),
           ],
         ));
   }
@@ -126,7 +142,13 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                 list[index].press(context);
               }),
         ),
-        Divider(),
+        Padding(
+          padding: const EdgeInsets.only(
+              left: kDefaultPadding, right: kDefaultPadding),
+          child: Divider(
+            color: Colors.black38,
+          ),
+        ),
         SizedBox(
           height: kDefaultPadding,
         ),

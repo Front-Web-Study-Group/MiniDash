@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mini_dash/screens/user/component/feedback_detail.dart';
 import 'package:mini_dash/screens/user/feedback_screen.dart';
 import 'package:mini_dash/screens/user/login_screen.dart';
 import 'package:mini_dash/screens/user/theme_screen.dart';
@@ -97,7 +98,7 @@ List feedbackConfigList1 = [
     press: (context) => Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => LoginScreen(),
+        builder: (context) => FeedbackDetail(),
       ),
     ),
   ),
@@ -107,7 +108,7 @@ List feedbackConfigList1 = [
     press: (context) => Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => LoginScreen(),
+        builder: (context) => FeedbackDetail(),
       ),
     ),
   ),
@@ -120,7 +121,7 @@ List feedbackConfigList2 = [
     press: (context) => Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => LoginScreen(),
+        builder: (context) => FeedbackDetail(),
       ),
     ),
   ),
@@ -130,7 +131,7 @@ List feedbackConfigList2 = [
     press: (context) => Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => LoginScreen(),
+        builder: (context) => FeedbackDetail(),
       ),
     ),
   ),
@@ -143,7 +144,7 @@ List feedbackConfigList3 = [
     press: (context) => Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => LoginScreen(),
+        builder: (context) => FeedbackDetail(),
       ),
     ),
   ),
@@ -153,14 +154,8 @@ List feedbackConfigList3 = [
     press: (context) => Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => LoginScreen(),
+        builder: (context) => FeedbackDetail(),
       ),
     ),
   ),
-];
-
-List feedbackConfigList = [
-  FeedbackConfig(label: '用户反馈1', list: feedbackConfigList1),
-  FeedbackConfig(label: '用户反馈2', list: feedbackConfigList2),
-  FeedbackConfig(label: '用户反馈3', list: feedbackConfigList3),
 ];
