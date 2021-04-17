@@ -253,7 +253,7 @@ Future<int> _rewardPanel({contexts, imgIndex}) {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 RaisedButton(
-                  child: Text("默认"),
+                  child: Text("感谢老板"),
                   onPressed: () {
                     imgIndex = 0;
                   },

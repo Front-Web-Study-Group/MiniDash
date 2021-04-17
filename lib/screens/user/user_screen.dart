@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mini_dash/components/search_input.dart';
+import 'package:mini_dash/components/loading.dart';
 import 'package:mini_dash/constants.dart';
 import 'package:mini_dash/components/header.dart';
 import 'package:mini_dash/models/User.dart';
@@ -31,7 +31,7 @@ class UserScreen extends StatelessWidget {
             route: 'user',
           ),
         ),
-
+        Loading(),
         // Center(
         //   child: FutureBuilder<String>(
         //     future: mockNetworkData(),
