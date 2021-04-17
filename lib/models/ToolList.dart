@@ -9,7 +9,7 @@ class ToolConfig {
   ToolConfig({this.name, this.icon, this.press, this.context});
 }
 
-List toolConfigList = [
+List toolNavbarConfigList = [
   ToolConfig(
       icon: Icon(Icons.help_outline),
       press: (context) async {
@@ -209,3 +209,24 @@ Future<DateTime> _showCalendarPanel({contexts}) {
     ),
   );
 }
+
+List toolConfigList = [
+  ToolConfig(
+      icon: Icon(Icons.auto_fix_off),
+      press: (context) async {
+        int type = await _showHelpPanel(contexts: context);
+        print(type);
+      }),
+  ToolConfig(
+      icon: Icon(Icons.wb_iridescent_outlined),
+      press: (context) async {
+        bool type = await _showSetupPanel(contexts: context);
+        print(type);
+      }),
+  ToolConfig(
+      icon: Icon(Icons.design_services),
+      press: (context) async {
+        int type = await _showUploadPanel(contexts: context);
+        print(type);
+      }),
+];

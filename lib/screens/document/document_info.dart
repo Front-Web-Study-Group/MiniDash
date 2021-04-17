@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:mini_dash/components/card_info.dart';
 import 'package:mini_dash/components/tool_box.dart';
+import 'package:mini_dash/models/ToolList.dart';
 
 class DocumentInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Material App',
-      home: Scaffold(
+    return Scaffold(
         body: Column(
           children: [
             // Container(
@@ -51,7 +50,18 @@ class DocumentInfo extends StatelessWidget {
           ],
         ),
         floatingActionButton: ToolBox(),
-      ),
-    );
+        bottomNavigationBar: GridView.builder(
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 6, childAspectRatio: 1),
+          shrinkWrap: true, // 自适应高都
+          itemCount: toolNavbarConfigList.length,
+          itemBuilder: (BuildContext context, int index) {
+            return IconButton(
+                icon: toolNavbarConfigList[index].icon,
+                onPressed: () {
+                  toolNavbarConfigList[index].press(context);
+                });
+          },
+        ));
   }
 }

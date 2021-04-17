@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mini_dash/components/loading.dart';
 import 'package:mini_dash/constants.dart';
 
 class ThemeScreen extends StatelessWidget {
@@ -19,6 +20,7 @@ class ThemeScreen extends StatelessWidget {
             Expanded(
                 child: Column(
               children: [
+                Loading(),
                 Text(
                   '错误事项',
                   style: TextStyle(fontSize: 20),

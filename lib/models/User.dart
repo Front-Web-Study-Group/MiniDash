@@ -10,7 +10,7 @@ import 'package:mini_dash/screens/user/setup_screen.dart';
 
 class User {
   final String name;
-  final Icon icon;
+  final dynamic icon;
   final Function press;
 
   User({
@@ -212,4 +212,69 @@ List setupConfigList = [
       ),
     ),
   ),
+  User(
+    name: "打赏作者",
+    icon: Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        Text(
+          "🤪",
+          style: TextStyle(fontSize: 35),
+          textAlign: TextAlign.center,
+        )
+      ],
+    ),
+    press: (context) async {
+      int imgIndex = 0;
+      int type = await _rewardPanel(contexts: context, imgIndex: imgIndex);
+      print(type);
+    },
+  ),
 ];
+
+// 打赏
+Future<int> _rewardPanel({contexts, imgIndex}) {
+  BuildContext context = contexts;
+  return showDialog(
+    context: context,
+    builder: (context) {
+      return AlertDialog(
+        title: Text("打赏"),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            if (imgIndex == 0)
+              Image(image: AssetImage('./assets/images/pay.jpeg')),
+            if (imgIndex == 1)
+              Image(image: AssetImage('./assets/images/double_pay.jpeg')),
+            if (imgIndex == 2)
+              Image(image: AssetImage('./assets/images/super_pay.jpeg')),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                RaisedButton(
+                  child: Text("默认"),
+                  onPressed: () {
+                    imgIndex = 0;
+                  },
+                ),
+                RaisedButton(
+                  child: Text("加倍"),
+                  onPressed: () {
+                    imgIndex = 1;
+                  },
+                ),
+                RaisedButton(
+                  child: Text("超级加倍"),
+                  onPressed: () {
+                    imgIndex = 2;
+                  },
+                ),
+              ],
+            ),
+          ],
+        ),
+      );
+    },
+  );
+}
