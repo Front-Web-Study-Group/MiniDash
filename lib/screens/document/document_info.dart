@@ -52,7 +52,8 @@ class DocumentInfo extends StatelessWidget {
         floatingActionButton: ToolBox(),
         bottomNavigationBar: GridView.builder(
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 6, childAspectRatio: 1),
+              crossAxisCount: toolNavbarConfigList.length,
+              childAspectRatio: 2.35),
           shrinkWrap: true, // 自适应高都
           itemCount: toolNavbarConfigList.length,
           itemBuilder: (BuildContext context, int index) {
