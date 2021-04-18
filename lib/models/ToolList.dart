@@ -9,6 +9,20 @@ class ToolConfig {
   ToolConfig({this.name, this.icon, this.press, this.context});
 }
 
+void _showToast(BuildContext context) {
+  Scaffold.of(context).showSnackBar(SnackBar(
+    content: Text("Sending Message"),
+  ));
+  // final scaffold = Scaffold.of(context);
+  // scaffold.showSnackBar(
+  //   SnackBar(
+  //     content: const Text('Added to favorite'),
+  //     action: SnackBarAction(
+  //         label: 'UNDO', onPressed: scaffold.hideCurrentSnackBar),
+  //   ),
+  // );
+}
+
 List toolNavbarConfigList = [
   ToolConfig(
       icon: Icon(Icons.help_outline),
@@ -22,17 +36,27 @@ List toolNavbarConfigList = [
         bool type = await _showSetupPanel(contexts: context);
         print(type);
       }),
-  ToolConfig(
-      icon: Icon(Icons.arrow_circle_up),
-      press: (context) async {
-        int type = await _showUploadPanel(contexts: context);
-        print(type);
-      }),
+  // ToolConfig(
+  //     icon: Icon(Icons.arrow_circle_up),
+  //     press: (context) async {
+  //       int type = await _showUploadPanel(contexts: context);
+  //       print(type);
+  //     }),
   ToolConfig(
       icon: Icon(Icons.favorite),
       press: (context) async {
-        int type = await _showCollectPanel(contexts: context);
-        print(type);
+        // Fluttertoast.showToast(
+        //     msg: "你今天真好看",
+        //     toastLength: Toast.LENGTH_SHORT,
+        //     gravity: ToastGravity.BOTTOM,
+        //     timeInSecForIosWeb: 1,
+        //     backgroundColor: Colors.black45,
+        //     textColor: Colors.white,
+        //     fontSize: 16.0);
+
+        _showToast(context);
+        // int type = await _showCollectPanel(contexts: context);
+        // print(type);
       }),
   ToolConfig(
       icon: Icon(Icons.wysiwyg),
@@ -40,12 +64,12 @@ List toolNavbarConfigList = [
         int type = await _showInfoPanel(contexts: context);
         print(type);
       }),
-  ToolConfig(
-      icon: Icon(Icons.date_range),
-      press: (context) async {
-        DateTime type = await _showCalendarPanel(contexts: context);
-        print(type);
-      }),
+  // ToolConfig(
+  //     icon: Icon(Icons.date_range),
+  //     press: (context) async {
+  //       DateTime type = await _showCalendarPanel(contexts: context);
+  //       print(type);
+  //     }),
 ];
 
 // 帮助
@@ -160,6 +184,7 @@ Future<int> _showUploadPanel({contexts}) {
 // 收藏
 Future<int> _showCollectPanel({contexts}) {
   BuildContext context = contexts;
+
   return showDialog(
     context: context,
     builder: (context) {
