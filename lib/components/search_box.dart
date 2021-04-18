@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mini_dash/components/search_input.dart';
-import 'package:mini_dash/constants.dart';
-import 'package:mini_dash/screens/home/home_screen.dart';
-import '../constants.dart';
+import 'package:mini_dash/utils/constants.dart';
+import "package:mini_dash/screens/repos/repos_list.dart";
+import '../utils/constants.dart';
 
 class SearchBox extends StatelessWidget {
   const SearchBox({
@@ -26,11 +26,11 @@ class SearchBox extends StatelessWidget {
               Expanded(
                 flex: 1,
                 child: IconButton(
-                  icon: Icon(Icons.account_balance),
+                  icon: Icon(Icons.description, color: Colors.white),
                   onPressed: () => Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => HomeScreen(),
+                      builder: (context) => ReposScreen(),
                     ),
                   ),
                 ),

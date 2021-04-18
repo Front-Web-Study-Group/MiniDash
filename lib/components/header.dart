@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mini_dash/components/search_box.dart';
-import '../constants.dart';
+import '../utils/constants.dart';
 
 class Header extends StatelessWidget {
   const Header({

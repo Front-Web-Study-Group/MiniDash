@@ -12,3 +12,8 @@ const kWarninngColor = Color(0xFFF3BB1C);
 const kErrorColor = Color(0xFFF03738);
 
 const kDefaultPadding = 20.0;
+
+const String FEED_BASE_URL = "https://kapeli.com/feeds/";
+const String FEED_BASE_URL_SPROUTCORE = "http://docs.sproutcore.com/feeds/";
+
+const dPrimaryColor = Color.fromARGB(255, 72, 148, 236);

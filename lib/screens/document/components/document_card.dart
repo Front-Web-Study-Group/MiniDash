@@ -1,6 +1,6 @@
 import 'package:mini_dash/models/Document.dart';
 import 'package:flutter/material.dart';
-import '../../../constants.dart';
+import '../../../utils/constants.dart';
 
 class DocumentCard extends StatelessWidget {
   const DocumentCard({

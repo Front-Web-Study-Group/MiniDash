@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mini_dash/constants.dart';
+import 'package:mini_dash/utils/constants.dart';
 import 'package:mini_dash/components/header.dart';
 
 class SearchScreen extends StatelessWidget {

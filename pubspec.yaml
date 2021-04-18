@@ -39,8 +39,8 @@ dependencies:
   dio: ^4.0.0
   dropdownfield: ^1.0.3
   # json_annotation: ^4.0.1
-
-
+  bot_toast: ^3.0.5
+  xml:
 
 dev_dependencies:
   flutter_test:

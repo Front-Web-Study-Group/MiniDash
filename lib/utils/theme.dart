@@ -1,4 +1,4 @@
-import 'package:mini_dash/constants.dart';
+import 'package:mini_dash/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 

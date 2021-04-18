@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mini_dash/models/User.dart';
 import 'package:mini_dash/screens/document/document_info.dart';
-import '../../../constants.dart';
+import '../../../utils/constants.dart';
 
 class UserCard extends StatelessWidget {
   const UserCard({

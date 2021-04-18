@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mini_dash/constants.dart';
+import 'package:mini_dash/utils/constants.dart';
 import 'package:mini_dash/models/Bookshelf.dart';
 import 'package:mini_dash/screens/document/document_info.dart';
 

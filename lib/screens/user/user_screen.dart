@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mini_dash/components/loading.dart';
-import 'package:mini_dash/constants.dart';
+import 'package:mini_dash/utils/constants.dart';
 import 'package:mini_dash/components/header.dart';
 import 'package:mini_dash/models/User.dart';
 import 'package:mini_dash/screens/user/component/user_card.dart';

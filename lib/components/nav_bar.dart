@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mini_dash/screens/home/home_screen.dart';
 import 'package:mini_dash/screens/user/user_screen.dart';
 import 'package:mini_dash/screens/userData/user_data_screen.dart';
-import '../constants.dart';
+import '../utils/constants.dart';
 
 class NavBar extends StatelessWidget {
   const NavBar({

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mini_dash/models/ToolList.dart';
-import '../constants.dart';
+import '../utils/constants.dart';
 
 class ToolBox extends StatefulWidget {
   const ToolBox({Key key}) : super(key: key);
