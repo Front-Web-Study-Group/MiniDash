@@ -53,9 +53,8 @@ class _DownloadBtnState extends State<DownloadBtn>
     if (!this.downloading) {
       this.downloading = true;
       onAnimationStart();
-      // TODO:
-      var urls = await getDownloadUrls(repo.feedURL);
-      // dashApi.download(urls.first)
+      var repoXml = await getDownloadUrls(repo.feedURL);
+      await RepoDownload().downloads(repoXml);
     } else {
       final action = await confirm(context, content: '正在下载中，确认取消?');
       if (action) {

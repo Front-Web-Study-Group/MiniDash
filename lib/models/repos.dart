@@ -1,4 +1,96 @@
+import 'dart:io';
+import 'package:dio/dio.dart';
 import 'package:mini_dash/utils/constants.dart';
+import 'package:mini_dash/utils/index.dart';
+import 'package:mini_dash/api/dash.dart';
+import 'package:xml/xml.dart';
+import 'package:archive/archive.dart';
+
+class RepoDownload {
+  static RepoDownload get instance => _getInstance();
+
+  static RepoDownload _instance;
+
+  static _getInstance() {
+    if (_instance == null) {
+      _instance = RepoDownload._internal();
+    }
+    return _instance;
+  }
+
+  factory RepoDownload() => _getInstance();
+
+  String docsetsPath = '/docsets/';
+
+  Future<String> get downloadPath async {
+    var path = await getAppPath();
+    return path + docsetsPath;
+  }
+
+  RepoDownload._internal();
+
+  unPack(String file) async {
+    // final bytes = File(file).readAsBytesSync();
+    // final archive = GZipDecoder().decodeBytes(bytes);
+    // final dPath = await downloadPath;
+
+    // for (final file in archive) {
+    //   final filename = file.name;
+    //   if (file.isFile) {
+    //     final data = file.content as List<int>;
+    //     File(dPath + filename)
+    //       ..createSync(recursive: true)
+    //       ..writeAsBytesSync(data);
+    //   } else {
+    //     Directory(dPath + filename)..create(recursive: true);
+    //   }
+    // }
+  }
+
+  download(String url, String name, {Function onReceiveProgress}) async {
+    await dashApi.download(url, name,
+        onReceiveProgress: (receivedBytes, totalBytes) {
+      if (onReceiveProgress != null) {
+        var progress = (receivedBytes / totalBytes);
+        onReceiveProgress(progress, receivedBytes, totalBytes);
+      }
+      // 超时时间为1小时
+    }, options: Options(receiveTimeout: 3600000));
+  }
+
+  downloads(RepoXml repoXml, {Function onReceiveProgress}) async {
+    var urls = repoXml.urls;
+    for (var url in urls) {
+      var tempPath = await getTempPath();
+      var file = '$tempPath/${url.split('/').last}';
+      try {
+        var isExist = File(file).existsSync();
+        if (!isExist) {
+          await download(url, file, onReceiveProgress: onReceiveProgress);
+        }
+      } catch (e) {
+        continue;
+      }
+      await unPack(file);
+      break;
+    }
+  }
+}
+
+class RepoXml {
+  List<String> urls;
+  String version;
+  bool noVersion;
+
+  RepoXml(String xml) {
+    var xmlDoc = XmlDocument.parse(xml);
+    var root = xmlDoc.firstChild;
+
+    this.urls = root.findElements('url').map((node) => node.text).toList();
+    this.version = root.findElements('version').first.text;
+    this.noVersion = root.findElements('other-versions').length == 0;
+  }
+}
 
 class Repo {
   final String feed, icon;
