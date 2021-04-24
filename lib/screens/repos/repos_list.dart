@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mini_dash/models/repos.dart';
+import 'package:mini_dash/models/repos/repos.dart';
 import './components/repo_download.dart';
 
 class ReposScreen extends StatelessWidget {

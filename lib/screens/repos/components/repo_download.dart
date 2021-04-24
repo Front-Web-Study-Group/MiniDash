@@ -1,9 +1,11 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:bot_toast/bot_toast.dart';
-import 'package:mini_dash/models/repos.dart';
 import 'package:mini_dash/utils/constants.dart';
 import 'package:mini_dash/utils/index.dart';
 import 'package:mini_dash/api/dash.dart';
+import 'package:mini_dash/models/repos/repos.dart';
+import 'package:mini_dash/models/repos/repo_download.dart';
 
 class DownloadBtn extends StatefulWidget {
   DownloadBtn(this.repo, {Key key}) : super(key: key);
@@ -14,31 +16,20 @@ class DownloadBtn extends StatefulWidget {
   _DownloadBtnState createState() => _DownloadBtnState(this.repo);
 }
 
-class _DownloadBtnState extends State<DownloadBtn>
-    with SingleTickerProviderStateMixin {
-  AnimationController _controller;
-
+class _DownloadBtnState extends State<DownloadBtn> {
   final Repo repo;
 
   bool isDownload = false;
   bool downloading = false;
 
-  _DownloadBtnState(this.repo);
+  double progress = 0;
 
-  @override
-  void initState() {
-    super.initState();
+  RepoDownload repoDownload;
 
-    _controller =
-        new AnimationController(vsync: this, duration: Duration(seconds: 5));
-    _controller.addListener(() => setState(() => {}));
-  }
+  CancelToken token;
 
-  void onAnimationStart() {
-    _controller.forward(from: 0.0).then((value) {
-      BotToast.showText(text: '下载成功');
-      this.isDownload = true;
-    });
+  _DownloadBtnState(this.repo) {
+    this.repoDownload = RepoDownload(repo);
   }
 
   _onDelete() async {
@@ -51,13 +42,33 @@ class _DownloadBtnState extends State<DownloadBtn>
 
   _onDownload() async {
     if (!this.downloading) {
-      this.downloading = true;
-      onAnimationStart();
-      var repoXml = await getDownloadUrls(repo.feedURL);
-      await RepoDownload().downloads(repoXml);
+      setState(() {
+        this.downloading = true;
+      });
+      // onAnimationStart();
+      var data = await getDownloadUrls(repo.feedURL);
+      repo.parseXML(data);
+      this.token = CancelToken();
+      await repoDownload.downloads(
+          onReceiveProgress: (value) {
+            print(value);
+            setState(() {
+              this.progress = value;
+              if (value >= 1) {
+                this.isDownload = true;
+                this.downloading = false;
+                BotToast.showText(text: '下载成功');
+              }
+            });
+          },
+          cancelToken: token);
     } else {
       final action = await confirm(context, content: '正在下载中，确认取消?');
       if (action) {
+        setState(() {
+          this.downloading = false;
+        });
+        this.token?.cancel();
         BotToast.showText(text: '取消下载');
       }
     }
@@ -95,9 +106,7 @@ class _DownloadBtnState extends State<DownloadBtn>
               CircularProgressIndicator(
                 strokeWidth: 3,
                 backgroundColor: Colors.grey[200],
-                // valueColor: ColorTween(begin: Colors.grey, end: dPrimaryColor)
-                //     .animate(_controller),
-                value: _controller.value,
+                value: progress,
               ),
               Positioned(
                   child: Container(
