@@ -1,11 +1,13 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:bot_toast/bot_toast.dart';
+import 'package:mini_dash/models/docset/docsets.dart';
+import 'package:mini_dash/models/docset/repos/repo.dart';
 import 'package:mini_dash/utils/constants.dart';
 import 'package:mini_dash/utils/index.dart';
 import 'package:mini_dash/api/dash.dart';
-import 'package:mini_dash/models/repos/repo.dart';
-import 'package:mini_dash/models/repos/repo_download.dart';
+import 'package:mini_dash/models/docset/repos/repo_download.dart';
+import 'package:provider/provider.dart';
 
 class DownloadBtn extends StatefulWidget {
   DownloadBtn(this.repo, {Key key}) : super(key: key);
@@ -16,16 +18,46 @@ class DownloadBtn extends StatefulWidget {
   _DownloadBtnState createState() => _DownloadBtnState(this.repo);
 }
 
-class _DownloadBtnState extends State<DownloadBtn> {
+class _DownloadBtnState extends State<DownloadBtn>
+    with AutomaticKeepAliveClientMixin {
   final Repo repo;
 
   bool downloading = false;
+
+  bool isDispose = false;
 
   double progress = 0;
 
   CancelToken token;
 
   _DownloadBtnState(this.repo);
+
+  @override
+  bool get wantKeepAlive => true;
+
+  forceUpdate() {
+    context.read<Docsets>().forceUpdate();
+  }
+
+  @override
+  void dispose() {
+    this.isDispose = true;
+    super.dispose();
+
+    cancelDownload();
+  }
+
+  cancelDownload() {
+    if (this.downloading) {
+      if (!isDispose) {
+        this.setState(() {
+          this.downloading = false;
+        });
+      }
+      this.token?.cancel();
+      BotToast.showText(text: '取消下载');
+    }
+  }
 
   _onDelete() async {
     final action = await confirm(context, content: '确认删除?');
@@ -37,11 +69,17 @@ class _DownloadBtnState extends State<DownloadBtn> {
         msg = '失败';
       }
       BotToast.showText(text: '删除$msg');
+      forceUpdate();
     }
   }
 
   _onDownload() async {
     if (!this.downloading) {
+      var isCanInstall = repo.isCanInstall();
+      if (!isCanInstall) {
+        BotToast.showText(text: '当前文档无法下载');
+        return;
+      }
       setState(() {
         this.downloading = true;
       });
@@ -52,7 +90,6 @@ class _DownloadBtnState extends State<DownloadBtn> {
       var repoDownload = RepoDownload(repo);
       await repoDownload.downloads(
           onReceiveProgress: (value) {
-            print(value);
             setState(() {
               this.progress = value;
               if (value >= 1) {
@@ -62,15 +99,16 @@ class _DownloadBtnState extends State<DownloadBtn> {
               }
             });
           },
-          cancelToken: token);
+          cancelToken: token,
+          onError: (e) {
+            repo.isDownload = false;
+            this.downloading = false;
+          });
+      forceUpdate();
     } else {
       final action = await confirm(context, content: '正在下载中，确认取消?');
       if (action) {
-        setState(() {
-          this.downloading = false;
-        });
-        this.token?.cancel();
-        BotToast.showText(text: '取消下载');
+        cancelDownload();
       }
     }
   }

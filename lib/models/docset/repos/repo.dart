@@ -44,7 +44,7 @@ class Repo {
     var root = xmlDoc.firstChild;
 
     this.urls = root.findElements('url').map((node) => node.text).toList();
-    this.version = root.findElements('version').first.text.replaceAll('/', '-');
+    this.version = root.findElements('version').first.text.replaceAll('/', '.');
     this.hasOtherVersion = root.findElements('other-versions').length != 0;
   }
 
@@ -64,6 +64,13 @@ class Repo {
       docsetName += "-$dVersion";
     }
     return docsetName;
+  }
+
+  bool isCanInstall() {
+    if (this.docsetName == "DOM") {
+      return false;
+    }
+    return true;
   }
 
   // 下载/解压名字都把版本带上
@@ -92,6 +99,7 @@ class Repo {
     var directory = Directory(storePath);
     if (directory.existsSync()) {
       directory.deleteSync(recursive: true);
+      isDownload = false;
       return true;
     }
     return false;

@@ -1,12 +1,25 @@
 import 'dart:io';
+
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:mini_dash/models/docset/repos/repo.dart';
+import 'package:mini_dash/models/docset/repos/repo_configs.dart';
 import 'package:path/path.dart' as path;
-import 'package:mini_dash/models/docset/docset.dart';
 
-import './repo.dart';
-import './repo_configs.dart';
+import './docset.dart';
 
-class Repos {
+class Docsets with ChangeNotifier {
   List<Repo> repoData = repoConfigs;
+
+  Docsets() {
+    this.init();
+  }
+
+  List<Repo> get docsetData => this.repoData.where((repo) => repo.isDownload).toList();
+
+  forceUpdate() {
+    notifyListeners();
+  }
 
   init() async {
     var docsetPath = await Docset.getStorePath();
@@ -37,7 +50,6 @@ class Repos {
         return repo;
       }).toList();
     }
+    notifyListeners();
   }
 }
-
-var repos = Repos();

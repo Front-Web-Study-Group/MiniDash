@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:bot_toast/bot_toast.dart';
 import 'package:dio/dio.dart';
 import 'package:mini_dash/api/dash.dart';
 import 'package:archive/archive.dart';
@@ -61,6 +62,7 @@ class RepoDownload {
         onReceiveProgress: (receivedBytes, totalBytes) {
       if (onReceiveProgress != null) {
         var progress = (receivedBytes / totalBytes);
+        print('progress: $progress');
         onReceiveProgress(progress);
       }
       // 下载超时时间为1小时
@@ -73,27 +75,44 @@ class RepoDownload {
     });
   }
 
-  downloads({Function onReceiveProgress, CancelToken cancelToken}) async {
+  downloads(
+      {Function onReceiveProgress,
+      CancelToken cancelToken,
+      Function onError}) async {
     var urls = repo.urls;
+    var count = 0;
     for (var url in urls) {
-      var file = await repo.getDownloadPath(url);
+      print('download: $url');
+      if (count > 0) {
+        BotToast.showText(text: '正在进行第$count次重试');
+      }
+      count += 1;
+      var filePath = await repo.getDownloadPath(url);
       try {
         // 先查一般临时目录是否有缓存文件
-        var isExist = File(file).existsSync();
+        var isExist = File(filePath).existsSync();
         if (!isExist) {
-          await download(url, file,
+          await download(url, filePath,
               onReceiveProgress: onReceiveProgress, cancelToken: cancelToken);
         } else {
           // 有缓存文件直接下载完成
           onReceiveProgress(1.toDouble());
         }
       } catch (e) {
+        BotToast.showText(text: '下载失败');
         print('download error: $e');
         continue;
       }
       if (!cancelToken.isCancelled) {
-        // 解压可放在后台去异步处理
-        await unPack(file);
+        try {
+          // 解压可放在后台去异步处理
+          await unPack(filePath);
+        } catch (e) {
+          BotToast.showText(text: '解压错误，请重新下载');
+          var file = File(filePath);
+          file.deleteSync();
+          onError(e);
+        }
       }
       break;
     }

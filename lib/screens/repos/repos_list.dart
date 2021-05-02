@@ -1,23 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:mini_dash/models/repos/repos.dart';
+import 'package:mini_dash/models/docset/docsets.dart';
 import './components/repo_download.dart';
+import 'package:provider/provider.dart';
 
 class ReposScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var repoList = repos.repoData;
+    var repoData = context.watch<Docsets>().repoData;
+
     return Scaffold(
       appBar: AppBar(title: Text("Docsets")),
       body: Column(children: [
         Expanded(
             child: ListView.separated(
-                itemCount: repoList.length,
+                itemCount: repoData.length,
                 padding: EdgeInsets.symmetric(horizontal: 6, vertical: 0),
                 separatorBuilder: (BuildContext context, int index) {
                   return Divider();
                 },
                 itemBuilder: (context, index) {
-                  var item = repoList[index];
+                  var item = repoData[index];
+
                   return Container(
                     height: 40,
                     padding: EdgeInsets.symmetric(horizontal: 8),
