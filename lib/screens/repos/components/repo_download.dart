@@ -58,7 +58,7 @@ class _DownloadBtnState extends State<DownloadBtn> {
               if (value >= 1) {
                 repo.isDownload = true;
                 this.downloading = false;
-                BotToast.showText(text: '下载成功');
+                BotToast.showText(text: '${repo.name} 下载成功');
               }
             });
           },

@@ -86,7 +86,6 @@ class RepoDownload {
         } else {
           // 有缓存文件直接下载完成
           onReceiveProgress(1.toDouble());
-          break;
         }
       } catch (e) {
         print('download error: $e');
