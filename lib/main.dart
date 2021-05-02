@@ -5,11 +5,17 @@ import 'package:mini_dash/utils/theme.dart';
 import 'package:mini_dash/screens/home/home_screen.dart';
 import 'package:bot_toast/bot_toast.dart';
 
+import 'application.dart';
+
 void main() {
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  MyApp() {
+    Application.init();
+  }
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {

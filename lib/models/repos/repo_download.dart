@@ -1,11 +1,10 @@
 import 'dart:io';
 import 'package:dio/dio.dart';
-import 'package:mini_dash/utils/index.dart';
 import 'package:mini_dash/api/dash.dart';
 import 'package:archive/archive.dart';
 import 'package:path/path.dart' as path;
 
-import './repos.dart';
+import './repo.dart';
 
 class RepoDownload {
   // static RepoDownload get instance => _getInstance();
@@ -25,33 +24,7 @@ class RepoDownload {
 
   Repo repo;
 
-  String docsetsPath = 'docsets';
-
   RepoDownload(this.repo);
-
-  // 下载/解压名字都把版本带上
-  String getName(String fName) {
-    if (repo.noVersion) {
-      return fName;
-    }
-    var fNames = fName.split('.');
-    var name = fNames.first + '-${repo.version}';
-    var suffix = fNames.last;
-    return [name, suffix].join('.');
-  }
-
-  Future<String> getStorePath() async {
-    var appPath = await getAppPath();
-    return path.join(appPath, docsetsPath, repo.docsetName);
-  }
-
-  Future<String> getDownloadPath(String url) async {
-    var fName = url.split('/').last;
-    var name = getName(fName);
-
-    var tempPath = await getTempPath();
-    return path.join(tempPath, docsetsPath, name);
-  }
 
   // 解压 docset tgz 格式文件压缩文件
   // TODO:
@@ -60,11 +33,11 @@ class RepoDownload {
     final bytes = File(file).readAsBytesSync();
     final Archive archive =
         new TarDecoder().decodeBytes(GZipDecoder().decodeBytes(bytes));
-    final sPath = await getStorePath();
+    final sPath = await repo.getStorePath();
 
     for (final file in archive) {
       var list = path.split(file.name);
-      var name = getName(list.first);
+      var name = repo.getName(list.first);
       list.replaceRange(0, 1, [name]);
       final filePath = path.joinAll([sPath, ...list]);
       if (file.isFile) {
@@ -90,7 +63,7 @@ class RepoDownload {
         var progress = (receivedBytes / totalBytes);
         onReceiveProgress(progress);
       }
-      // 超时时间为1小时
+      // 下载超时时间为1小时
     },
         cancelToken: cancelToken,
         options: Options(receiveTimeout: 3600000)).catchError((Object err) {
@@ -103,7 +76,7 @@ class RepoDownload {
   downloads({Function onReceiveProgress, CancelToken cancelToken}) async {
     var urls = repo.urls;
     for (var url in urls) {
-      var file = await getDownloadPath(url);
+      var file = await repo.getDownloadPath(url);
       try {
         // 先查一般临时目录是否有缓存文件
         var isExist = File(file).existsSync();

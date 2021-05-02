@@ -4,7 +4,7 @@ import 'package:bot_toast/bot_toast.dart';
 import 'package:mini_dash/utils/constants.dart';
 import 'package:mini_dash/utils/index.dart';
 import 'package:mini_dash/api/dash.dart';
-import 'package:mini_dash/models/repos/repos.dart';
+import 'package:mini_dash/models/repos/repo.dart';
 import 'package:mini_dash/models/repos/repo_download.dart';
 
 class DownloadBtn extends StatefulWidget {
@@ -19,24 +19,24 @@ class DownloadBtn extends StatefulWidget {
 class _DownloadBtnState extends State<DownloadBtn> {
   final Repo repo;
 
-  bool isDownload = false;
   bool downloading = false;
 
   double progress = 0;
 
-  RepoDownload repoDownload;
-
   CancelToken token;
 
-  _DownloadBtnState(this.repo) {
-    this.repoDownload = RepoDownload(repo);
-  }
+  _DownloadBtnState(this.repo);
 
   _onDelete() async {
     final action = await confirm(context, content: '确认删除?');
 
     if (action) {
-      BotToast.showText(text: '删除成功');
+      var isDelete = await repo.deleteDocset();
+      var msg = '成功';
+      if (!isDelete) {
+        msg = '失败';
+      }
+      BotToast.showText(text: '删除$msg');
     }
   }
 
@@ -49,13 +49,14 @@ class _DownloadBtnState extends State<DownloadBtn> {
       var data = await getDownloadUrls(repo.feedURL);
       repo.parseXML(data);
       this.token = CancelToken();
+      var repoDownload = RepoDownload(repo);
       await repoDownload.downloads(
           onReceiveProgress: (value) {
             print(value);
             setState(() {
               this.progress = value;
               if (value >= 1) {
-                this.isDownload = true;
+                repo.isDownload = true;
                 this.downloading = false;
                 BotToast.showText(text: '下载成功');
               }
@@ -76,7 +77,7 @@ class _DownloadBtnState extends State<DownloadBtn> {
 
   @override
   Widget build(BuildContext context) {
-    if (this.isDownload) {
+    if (repo.isDownload) {
       return Row(
         children: [
           Container(
