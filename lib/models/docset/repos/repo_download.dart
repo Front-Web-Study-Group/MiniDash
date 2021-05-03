@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:mini_dash/api/dash.dart';
 import 'package:archive/archive.dart';
 import 'package:path/path.dart' as path;
@@ -27,14 +28,20 @@ class RepoDownload {
 
   RepoDownload(this.repo);
 
-  // 解压 docset tgz 格式文件压缩文件
-  // TODO:
-  // 这里应该根据文件后缀处理下，但貌似都是 tgz 格式的，可作为优化手段
-  unPack(String file) async {
+  static Archive getArchive(String file) {
     final bytes = File(file).readAsBytesSync();
     final Archive archive =
         new TarDecoder().decodeBytes(GZipDecoder().decodeBytes(bytes));
+    return archive;
+  }
+
+  // 解压 docset tgz 格式文件压缩文件
+  // TODO:
+  // 这里应该根据文件后缀处理下，但貌似都是 tgz 格式的，可作为优化手段
+  // 解压时间会很长，必须提示给用户可以取消解压才行
+  unPack(String file) async {
     final sPath = await repo.getStorePath();
+    var archive = await compute(getArchive, file);
 
     for (final file in archive) {
       var list = path.split(file.name);
@@ -43,11 +50,11 @@ class RepoDownload {
       final filePath = path.joinAll([sPath, ...list]);
       if (file.isFile) {
         final data = file.content as List<int>;
-        File(filePath)
-          ..createSync(recursive: true)
-          ..writeAsBytesSync(data);
+        var nfile = File(filePath);
+        await nfile.create(recursive: true);
+        await nfile.writeAsBytes(data);
       } else {
-        Directory(filePath)..create(recursive: true);
+        await Directory(filePath).create(recursive: true);
       }
     }
   }
@@ -105,8 +112,10 @@ class RepoDownload {
       }
       if (!cancelToken.isCancelled) {
         try {
+          BotToast.showText(text: '正在解压');
           // 解压可放在后台去异步处理
           await unPack(filePath);
+          BotToast.showText(text: '解压成功');
         } catch (e) {
           BotToast.showText(text: '解压错误，请重新下载');
           var file = File(filePath);

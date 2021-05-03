@@ -24,8 +24,6 @@ class _DownloadBtnState extends State<DownloadBtn>
 
   bool downloading = false;
 
-  bool isDispose = false;
-
   double progress = 0;
 
   CancelToken token;
@@ -41,22 +39,9 @@ class _DownloadBtnState extends State<DownloadBtn>
 
   @override
   void dispose() {
-    this.isDispose = true;
     super.dispose();
 
-    cancelDownload();
-  }
-
-  cancelDownload() {
-    if (this.downloading) {
-      if (!isDispose) {
-        this.setState(() {
-          this.downloading = false;
-        });
-      }
-      this.token?.cancel();
-      BotToast.showText(text: '取消下载');
-    }
+    this.token?.cancel();
   }
 
   _onDelete() async {
@@ -90,31 +75,41 @@ class _DownloadBtnState extends State<DownloadBtn>
       var repoDownload = RepoDownload(repo);
       await repoDownload.downloads(
           onReceiveProgress: (value) {
-            setState(() {
-              this.progress = value;
-              if (value >= 1) {
-                repo.isDownload = true;
-                this.downloading = false;
-                BotToast.showText(text: '${repo.name} 下载成功');
-              }
-            });
+            if (!this.token.isCancelled) {
+              setState(() {
+                this.progress = value;
+                if (value >= 1) {
+                  repo.isDownload = true;
+                  this.downloading = false;
+                  BotToast.showText(text: '${repo.name} 下载成功');
+                }
+              });
+            }
           },
           cancelToken: token,
           onError: (e) {
             repo.isDownload = false;
             this.downloading = false;
           });
-      forceUpdate();
+      if (!this.token.isCancelled) {
+        forceUpdate();
+      }
     } else {
       final action = await confirm(context, content: '正在下载中，确认取消?');
       if (action) {
-        cancelDownload();
+        this.setState(() {
+          this.downloading = false;
+        });
+        this.token?.cancel();
+        BotToast.showText(text: '取消下载');
       }
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
+
     if (repo.isDownload) {
       return Row(
         children: [
