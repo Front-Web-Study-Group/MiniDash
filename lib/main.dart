@@ -5,7 +5,6 @@ import 'package:mini_dash/utils/theme.dart';
 import 'package:mini_dash/screens/home/home_screen.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:provider/provider.dart';
-import 'package:mini_dash/models/docset/docsets.dart';
 
 import 'application.dart';
 
@@ -22,9 +21,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-        providers: [
-          ChangeNotifierProvider(create: (_) => Docsets()),
-        ],
+        providers: Application.providers,
         child: MaterialApp(
           builder: BotToastInit(),
           navigatorObservers: [BotToastNavigatorObserver()],

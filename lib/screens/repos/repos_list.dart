@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:mini_dash/models/docset/docsets.dart';
+import 'package:mini_dash/models/docset/docset_model.dart';
 import './components/repo_download.dart';
 import 'package:provider/provider.dart';
 
 class ReposScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var repoData = context.watch<Docsets>().repoData;
+    var repoData = context.watch<DocsetModel>().repoData;
 
     return Scaffold(
       appBar: AppBar(title: Text("Docsets")),

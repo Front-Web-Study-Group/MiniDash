@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:mini_dash/models/docset/docsets.dart';
+import 'package:mini_dash/application.dart';
+import 'package:mini_dash/models/docset/docset_model.dart';
 import 'package:mini_dash/utils/constants.dart';
-import 'package:mini_dash/screens/document/document_info.dart';
 import 'package:provider/provider.dart';
+import 'package:mini_dash/screens/docset/index.dart';
 
 class Bookshelf extends StatelessWidget {
   renderTips() {
@@ -12,9 +13,13 @@ class Bookshelf extends StatelessWidget {
             style: TextStyle(fontSize: 18), textAlign: TextAlign.center));
   }
 
+  Bookshelf() {
+    Application.docsetModel.loadDocset();
+  }
+
   @override
   Widget build(BuildContext context) {
-    var docsetData = context.watch<Docsets>().docsetData;
+    var downloadRepoData = context.watch<DocsetModel>().downloadRepoData;
 
     return Scaffold(
       body: Padding(
@@ -22,16 +27,16 @@ class Bookshelf extends StatelessWidget {
           left: kDefaultPadding / 3,
           right: kDefaultPadding / 3,
         ),
-        child: docsetData.length <= 0
+        child: downloadRepoData.length <= 0
             ? renderTips()
             : GridView.builder(
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 3, //横轴三个子widget
                     childAspectRatio: 0.72 //宽高比为1时，子widget
                     ),
-                itemCount: docsetData.length,
+                itemCount: downloadRepoData.length,
                 itemBuilder: (context, index) {
-                  var docset = docsetData[index];
+                  var repo = downloadRepoData[index];
 
                   return Padding(
                     padding: const EdgeInsets.only(
@@ -41,13 +46,14 @@ class Bookshelf extends StatelessWidget {
                     child: Container(
                       color: Colors.cyan,
                       child: TextButton(
-                        child: Text(docset.name,
+                        child: Text(repo.name,
                             style: TextStyle(fontSize: 18, color: Colors.white),
                             textAlign: TextAlign.center),
                         onPressed: () => Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => DocumentInfo(),
+                            // builder: (context) => DocumentInfo(),
+                            builder: (context) => DocsetPage(repo),
                           ),
                         ),
                       ),

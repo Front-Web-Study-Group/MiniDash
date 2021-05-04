@@ -1,46 +1,86 @@
-import 'dart:io';
-
-import 'package:mini_dash/utils/constants.dart';
-import 'package:mini_dash/utils/index.dart';
+import 'package:mini_dash/models/docset/repos/repo.dart';
+import 'package:mini_dash/utils/parse_plist.dart';
 import 'package:path/path.dart' as path;
+import 'package:sqflite/sqflite.dart';
 
 class Docset {
-  static Future<String> getStorePath() async {
-    var appPath = await getAppPath();
-    return path.join(appPath, DOCSETS_PATH);
+  Repo repo;
+
+  get contents {
+    return path.join(repo.dPath, 'Contents');
   }
 
-  static Future<String> getDownloadPath() async {
-    var tempPath = await getTempPath();
-    return path.join(tempPath, DOCSETS_PATH);
+  get resources {
+    return path.join(contents, 'Resources');
   }
 
-  static const suffix = '.docset';
+  get dbPath {
+    return path.join(resources, 'docSet.dsidx');
+  }
 
-  static Docset parseDocsetPath(String docsetPath) {
-    var name = path.split(docsetPath).last;
-    var dir = Directory(docsetPath);
-    var version;
-    if (dir.existsSync()) {
-      var file = dir.listSync().lastWhere((item) => item.path.endsWith(suffix));
-      var fileName = path.split(file.path).last.split(suffix).first;
-      var names = fileName.split('-');
-      if (names.length > 1) {
-        version = names.last;
+  get docPath {
+    return path.join(resources, 'Documents');
+  }
+
+  String getFullPath(String fPath) {
+    return path.join(docPath, fPath);
+  }
+
+  ParsePlist getParsePlist() {
+    var plistPath = path.join(contents, 'Info.plist');
+    var parsePlist = ParsePlist(plistPath);
+    return parsePlist;
+  }
+
+  SearchItem getMainPage() {
+    var parsePlist = getParsePlist();
+    var map = parsePlist.toMap();
+    var indexPath = map['dashIndexFilePath'];
+    return SearchItem(
+        path: getFullPath(indexPath), type: 'Main Page', name: 'index');
+  }
+
+  Map<String, List<SearchItem>> typeMap;
+
+  Docset(this.repo);
+
+  init() async {
+    Database db = await openDatabase(dbPath);
+    var data = await db.rawQuery('SELECT * FROM searchIndex');
+    this.typeMap = transformTypeMap(data);
+  }
+
+  Map<String, List<SearchItem>> transformTypeMap(
+      List<Map<String, dynamic>> data) {
+    var map = Map<String, List<SearchItem>>();
+    var mainPage = getMainPage();
+    map[mainPage.type] = [mainPage];
+    data.forEach((item) {
+      var searchIndex = SearchItem.fromJson(item, getFullPath(item['path']));
+      var types = map[searchIndex.type];
+      if (types == null) {
+        List<SearchItem> tList = [];
+        map[searchIndex.type] = tList;
+        types = tList;
       }
-    }
-    return Docset(name, version);
+      types.add(searchIndex);
+    });
+    return map;
   }
+}
 
-  static String getDocsetName(String fName, String version) {
-    var fNames = fName.split('.');
-    var name = fNames.first + '-$version';
-    var suffix = fNames.last;
-    return [name, suffix].join('.');
-  }
-
+class SearchItem {
+  int id;
   String name;
-  String version;
+  String type;
+  String path;
 
-  Docset([this.name, this.version]);
+  SearchItem({this.id, this.name, this.path, this.type});
+
+  SearchItem.fromJson(Map map, [String fullPath]) {
+    id = map['id'];
+    name = map['name'];
+    type = map['type'];
+    path = fullPath ?? map['path'];
+  }
 }

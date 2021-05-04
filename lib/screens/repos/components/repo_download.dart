@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:bot_toast/bot_toast.dart';
-import 'package:mini_dash/models/docset/docsets.dart';
+import 'package:mini_dash/models/docset/docset_model.dart';
 import 'package:mini_dash/models/docset/repos/repo.dart';
 import 'package:mini_dash/utils/constants.dart';
 import 'package:mini_dash/utils/index.dart';
@@ -34,7 +34,7 @@ class _DownloadBtnState extends State<DownloadBtn>
   bool get wantKeepAlive => true;
 
   forceUpdate() {
-    context.read<Docsets>().forceUpdate();
+    context.read<DocsetModel>().forceUpdate();
   }
 
   @override
@@ -92,7 +92,7 @@ class _DownloadBtnState extends State<DownloadBtn>
             this.downloading = false;
           });
       if (!this.token.isCancelled) {
-        forceUpdate();
+        context.read<DocsetModel>().loadDocset();
       }
     } else {
       final action = await confirm(context, content: '正在下载中，确认取消?');

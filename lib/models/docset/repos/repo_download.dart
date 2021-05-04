@@ -112,7 +112,7 @@ class RepoDownload {
       }
       if (!cancelToken.isCancelled) {
         try {
-          BotToast.showText(text: '正在解压');
+          BotToast.showText(text: '正在解压中');
           // 解压可放在后台去异步处理
           await unPack(filePath);
           BotToast.showText(text: '解压成功');

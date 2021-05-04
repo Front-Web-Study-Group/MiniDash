@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:mini_dash/utils/constants.dart';
 import 'package:xml/xml.dart';
-import 'package:mini_dash/models/docset/docset.dart';
+import 'package:mini_dash/models/docset/docset_help.dart';
 import 'package:path/path.dart' as path;
 
 class RepoLocal {
@@ -21,6 +21,7 @@ class Repo {
   String dVersion;
   String version;
   String docsetName;
+  String dPath;
   bool isCustom = false;
   bool isDownload = false;
   bool hasOtherVersion = false;
@@ -78,19 +79,19 @@ class Repo {
     if (!this.hasOtherVersion) {
       return fName;
     }
-    return Docset.getDocsetName(fName, this.version);
+    return DocsetHelp.getDocsetName(fName, this.version);
   }
 
   Future<String> getDownloadPath(String url) async {
     var fName = url.split('/').last;
     var name = getName(fName);
 
-    var downloadPath = await Docset.getDownloadPath();
+    var downloadPath = await DocsetHelp.getDownloadPath();
     return path.join(downloadPath, DOCSETS_PATH, name);
   }
 
   Future<String> getStorePath() async {
-    var storePath = await Docset.getStorePath();
+    var storePath = await DocsetHelp.getStorePath();
     return path.join(storePath, this.docsetName);
   }
 
