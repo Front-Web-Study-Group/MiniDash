@@ -35,7 +35,7 @@ class Docset {
   SearchItem getMainPage() {
     var parsePlist = getParsePlist();
     var map = parsePlist.toMap();
-    var indexPath = map['dashIndexFilePath'];
+    var indexPath = map['dashIndexFilePath'] ?? 'index.html';
     return SearchItem(
         path: getFullPath(indexPath), type: 'Main Page', name: 'index');
   }
