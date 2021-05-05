@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:mini_dash/models/docset/docset.dart';
 import 'package:mini_dash/models/docset/docset_model.dart';
 import 'package:mini_dash/models/docset/repos/repo.dart';
+import 'package:mini_dash/screens/docset/type_list.dart';
 import 'package:mini_dash/screens/docset/webview.dart';
 import 'package:provider/provider.dart';
 
@@ -20,14 +21,20 @@ class _DocsetPageState extends State<DocsetPage> {
 
   _DocsetPageState(this.repo);
 
-  openItem(List<SearchItem> values) {
+  openItem(String key, List<SearchItem> values) {
     if (values.length == 1) {
       var item = values.first;
       Navigator.push(
         context,
         MaterialPageRoute(
-          // builder: (context) => DocumentInfo(),
           builder: (context) => DocsetWebView(searchItem: item),
+        ),
+      );
+    } else {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => DocsetList(title: key, list: values),
         ),
       );
     }
@@ -70,7 +77,7 @@ class _DocsetPageState extends State<DocsetPage> {
                   return GestureDetector(
                     behavior: HitTestBehavior.opaque,
                     onTap: () {
-                      openItem(values);
+                      openItem(key, values);
                     },
                     child: Container(
                       height: 40,

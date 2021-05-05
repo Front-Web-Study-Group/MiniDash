@@ -11,6 +11,12 @@ class DocsetWebView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var path = searchItem.path;
+    var index = path.lastIndexOf('#');
+    var htmlPath = path.substring(0, index);
+    // hash 值要单独拿出来，防止被下面 uri 编码转义掉
+    var hash = path.substring(index);
+
     return Scaffold(
       appBar: AppBar(
         title: Text(searchItem.type),
@@ -20,7 +26,7 @@ class DocsetWebView extends StatelessWidget {
         ),
       ),
       // 边距要想办法从里面调整，外面会导致滚动条有问题
-      body: WebView(initialUrl: Uri.file(searchItem.path).toString()),
+      body: WebView(initialUrl: Uri.file(htmlPath).toString() + hash),
     );
   }
 }
