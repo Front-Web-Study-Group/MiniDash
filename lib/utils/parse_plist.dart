@@ -22,15 +22,6 @@ class ParsePlist {
     return xml.substring(index);
   }
 
-  dynamic getValue(key, value) {
-    if (key == 'true') {
-      return true;
-    } else if (key == 'false') {
-      return false;
-    }
-    return value;
-  }
-
   Map<String, dynamic> toMap([XmlElement xmlElement]) {
     var element = xmlElement;
     if (xmlElement == null) {
@@ -56,9 +47,24 @@ class ParsePlist {
           case 'dict':
             map[tempKey] = toMap(node);
             break;
+          case 'true':
+            map[tempKey] = true;
+            break;
+          case 'false':
+            map[tempKey] = false;
+            break;
+          case 'real':
+            return double.parse(value);
+          case 'integer':
+            return int.parse(value);
+          case 'date':
+            return DateTime.parse(value);
+          // case 'data':
+          //   return new Uint8List.fromList(
+          //       CryptoUtils.base64StringToBytes(value));
           case 'string':
           default:
-            map[tempKey] = getValue(key, value);
+            map[tempKey] = value;
         }
       }
     });
