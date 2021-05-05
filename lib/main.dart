@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:mini_dash/screens/demo/localizations.dart';
+import 'package:mini_dash/utils/localizations.dart';
 import 'package:mini_dash/utils/theme.dart';
 import 'package:mini_dash/screens/home/home_screen.dart';
 import 'package:bot_toast/bot_toast.dart';
