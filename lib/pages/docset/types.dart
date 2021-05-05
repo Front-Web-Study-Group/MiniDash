@@ -1,23 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mini_dash/models/docset/docset.dart';
-import 'package:mini_dash/screens/docset/webview.dart';
+import 'package:mini_dash/routers/navigator_utils.dart';
+import 'package:mini_dash/routers/router_info.dart';
 
-class DocsetList extends StatelessWidget {
-  const DocsetList({Key key, this.title, this.list}) : super(key: key);
+class DocsetTypesPage extends StatelessWidget {
+  const DocsetTypesPage({Key key, this.title, this.list}) : super(key: key);
 
   final String title;
 
   final List<SearchItem> list;
 
   openItem(BuildContext context, SearchItem value) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        // builder: (context) => DocumentInfo(),
-        builder: (context) => DocsetWebView(searchItem: value),
-      ),
-    );
+    NavigatorUtils.push(context, RouterConst.docsetWebview, arguments: value);
   }
 
   @override
@@ -27,7 +22,7 @@ class DocsetList extends StatelessWidget {
           title: Text(title),
           leading: new IconButton(
             icon: new Icon(Icons.arrow_back),
-            onPressed: () => Navigator.of(context).pop(),
+            onPressed: () => NavigatorUtils.goBack(context),
           ),
         ),
         body: ListView.separated(

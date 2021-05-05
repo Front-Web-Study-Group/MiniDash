@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:mini_dash/application.dart';
 import 'package:mini_dash/models/docset/docset_model.dart';
+import 'package:mini_dash/routers/navigator_utils.dart';
+import 'package:mini_dash/routers/router_info.dart';
 import 'package:mini_dash/utils/constants.dart';
 import 'package:provider/provider.dart';
-import 'package:mini_dash/screens/docset/index.dart';
+import 'package:mini_dash/pages/docset/index.dart';
 
 class Bookshelf extends StatelessWidget {
   renderTips() {
@@ -46,17 +48,13 @@ class Bookshelf extends StatelessWidget {
                     child: Container(
                       color: Colors.cyan,
                       child: TextButton(
-                        child: Text(repo.name,
-                            style: TextStyle(fontSize: 18, color: Colors.white),
-                            textAlign: TextAlign.center),
-                        onPressed: () => Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            // builder: (context) => DocumentInfo(),
-                            builder: (context) => DocsetPage(repo),
-                          ),
-                        ),
-                      ),
+                          child: Text(repo.name,
+                              style:
+                                  TextStyle(fontSize: 18, color: Colors.white),
+                              textAlign: TextAlign.center),
+                          onPressed: () => NavigatorUtils.push(
+                              context, RouterConst.docset,
+                              arguments: repo)),
                     ),
                   );
                 }),

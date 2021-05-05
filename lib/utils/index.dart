@@ -35,3 +35,8 @@ Future<String> getTempPath() async {
   final dir = await getTemporaryDirectory();
   return dir.path;
 }
+
+/// String 空安全处理
+extension StringExt on String {
+  String get nullSafe => this ?? '';
+}

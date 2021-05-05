@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mini_dash/screens/home/home_screen.dart';
+import 'package:mini_dash/routers/navigator_utils.dart';
+import 'package:mini_dash/routers/router_info.dart';
 import 'package:mini_dash/screens/user/user_screen.dart';
 import 'package:mini_dash/screens/userData/user_data_screen.dart';
 import '../utils/constants.dart';
@@ -32,14 +33,8 @@ class NavBar extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           IconButton(
-            icon: Icon(Icons.account_balance),
-            onPressed: () => Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => HomeScreen(),
-              ),
-            ),
-          ),
+              icon: Icon(Icons.account_balance),
+              onPressed: () => NavigatorUtils.push(context, RouterConst.home)),
           IconButton(
             icon: Icon(Icons.dashboard),
             onPressed: () => Navigator.push(

@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:mini_dash/models/docset/docset.dart';
 import 'package:mini_dash/models/docset/docset_model.dart';
 import 'package:mini_dash/models/docset/repos/repo.dart';
-import 'package:mini_dash/screens/docset/type_list.dart';
-import 'package:mini_dash/screens/docset/webview.dart';
+import 'package:mini_dash/routers/navigator_utils.dart';
+import 'package:mini_dash/routers/router_info.dart';
 import 'package:provider/provider.dart';
 
 class DocsetPage extends StatefulWidget {
@@ -24,19 +24,10 @@ class _DocsetPageState extends State<DocsetPage> {
   openItem(String key, List<SearchItem> values) {
     if (values.length == 1) {
       var item = values.first;
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => DocsetWebView(searchItem: item),
-        ),
-      );
+      NavigatorUtils.push(context, RouterConst.docsetWebview, arguments: item);
     } else {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => DocsetList(title: key, list: values),
-        ),
-      );
+      NavigatorUtils.push(context, RouterConst.docsetTypes,
+          arguments: {'title': key, 'list': values});
     }
   }
 
@@ -56,7 +47,7 @@ class _DocsetPageState extends State<DocsetPage> {
           title: Text(repo.name),
           leading: new IconButton(
             icon: new Icon(Icons.arrow_back),
-            onPressed: () => Navigator.of(context).pop(),
+            onPressed: () => NavigatorUtils.goBack(context),
           ),
         ),
         body: typeMap == null

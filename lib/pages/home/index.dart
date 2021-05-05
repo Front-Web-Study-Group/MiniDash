@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:mini_dash/utils/constants.dart';
 import 'package:mini_dash/models/Demo.dart';
 import 'package:mini_dash/screens/demo/http.dart';
-import 'package:mini_dash/screens/home/components/body.dart';
 import 'package:mini_dash/components/nav_bar.dart';
 
-class HomeScreen extends StatelessWidget {
+import 'components/body.dart';
+
+class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Future<int> _showModalBottomSheet() {
