@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:mini_dash/components/search_box.dart';
 import '../utils/constants.dart';
 
-class Header extends StatelessWidget {
+class Header extends StatelessWidget implements PreferredSizeWidget {
   const Header({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      color: kPrimaryColor,
       child: Positioned(
         top: 0,
         left: 0,
@@ -24,4 +25,7 @@ class Header extends StatelessWidget {
       ),
     );
   }
+
+  @override
+  Size get preferredSize => Size.fromHeight(80);
 }

@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:mini_dash/pages/demo/http.dart';
 import 'package:mini_dash/pages/user/index.dart';
 import 'package:mini_dash/pages/userData/index.dart';
-import 'package:mini_dash/utils/constants.dart';
-import 'package:mini_dash/models/Demo.dart';
 
-import 'components/bookshelf.dart';
+import '../docset/docsets.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key}) : super(key: key);
@@ -15,37 +12,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  Future<int> renderFloatingBtn(BuildContext context) {
-    return showModalBottomSheet<int>(
-      context: context,
-      builder: (BuildContext context) {
-        return Padding(
-          padding: const EdgeInsets.all(kDefaultPadding),
-          child: ListView.builder(
-            itemCount: demoConfigList.length,
-            shrinkWrap: true, // 自适应高都
-            itemBuilder: (BuildContext context, int index) => GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => HttpTestRoute(),
-                    ),
-                  );
-                },
-                child: Text(
-                  demoConfigList[index].name,
-                )),
-          ),
-        );
-      },
-    );
-  }
-
   int currentIndex = 0;
 
   void _changePage(int index) {
-    /*如果点击的导航项不是当前项  切换 */
     if (index != currentIndex) {
       setState(() {
         currentIndex = index;
@@ -63,23 +32,16 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    print(currentIndex);
     return Scaffold(
-      body: pages[currentIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        fixedColor: Colors.blue[300],
-        currentIndex: this.currentIndex,
-        items: items,
-        onTap: _changePage,
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () async {
-          int type = await renderFloatingBtn(context);
-          print(type);
-        },
-        tooltip: 'Increment',
-        child: Icon(Icons.ac_unit_sharp),
-      ),
-    );
+        body: pages[currentIndex],
+        bottomNavigationBar: SizedBox(
+          height: 100,
+          child: BottomNavigationBar(
+            fixedColor: Colors.blue[300],
+            currentIndex: this.currentIndex,
+            items: items,
+            onTap: _changePage,
+          ),
+        ));
   }
 }
