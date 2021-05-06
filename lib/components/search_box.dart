@@ -1,52 +1,36 @@
 import 'package:flutter/material.dart';
-import 'package:mini_dash/components/search_input.dart';
+import 'package:mini_dash/routers/navigator_utils.dart';
+import 'package:mini_dash/routers/router_info.dart';
 import 'package:mini_dash/utils/constants.dart';
-import "package:mini_dash/screens/repos/repos_list.dart";
 import '../utils/constants.dart';
 
 class SearchBox extends StatelessWidget {
-  const SearchBox({
-    Key key,
-    @required this.size,
-    @required this.route,
-  }) : super(key: key);
-  final Size size;
-  final String route;
+  renderLeftIcon(context) {
+    return Column(
+      children: <Widget>[
+        Expanded(
+          flex: 1,
+          child: IconButton(
+              icon: Icon(Icons.description, color: Colors.white),
+              onPressed: () {
+                NavigatorUtils.push(context, RouterConst.repos);
+              }),
+        ),
+      ],
+    );
+  }
+
+  const SearchBox({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    Widget backBtn(String route) {
-      switch (route) {
-        case 'home':
-          return SizedBox();
-          break;
-        default:
-          return Column(
-            children: <Widget>[
-              Expanded(
-                flex: 1,
-                child: IconButton(
-                  icon: Icon(Icons.description, color: Colors.white),
-                  onPressed: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => ReposScreen(),
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          );
-      }
-    }
-
     return Container(
         margin: EdgeInsets.only(
             top: kDefaultPadding * 2.5, bottom: kDefaultPadding * 0.5),
         height: 50,
         child: Row(
           children: [
-            backBtn(route),
+            renderLeftIcon(context),
             // SearchInput(),
             Expanded(
               flex: 6,

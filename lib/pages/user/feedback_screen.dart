@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mini_dash/utils/constants.dart';
 import 'package:mini_dash/models/User.dart';
-import 'package:mini_dash/screens/user/component/user_card.dart';
-import 'package:mini_dash/utils/event_bus.dart';
+
+import 'component/user_card.dart';
 
 class FeedbackScreen extends StatefulWidget {
   @override

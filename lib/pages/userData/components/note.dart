@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:mini_dash/models/Document.dart';
-import 'package:mini_dash/screens/document/components/document_card.dart';
-import 'package:mini_dash/screens/document/document_info.dart';
-import 'package:mini_dash/screens/note/note_screen.dart';
+import 'package:mini_dash/pages/document/components/document_card.dart';
+import 'package:mini_dash/pages/document/document_info.dart';
+import 'package:mini_dash/pages/userData/components/note_text.dart';
 
-class NoteListScreen extends StatelessWidget {
+class Note extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,7 +26,7 @@ class NoteListScreen extends StatelessWidget {
                           onPressed: () => Navigator.of(context).pop(),
                         ),
                       ),
-                      body: SafeArea(child: NoteScreen()),
+                      body: SafeArea(child: NoteText()),
                       floatingActionButton: FloatingActionButton(
                         onPressed: () => Navigator.push(
                           context,

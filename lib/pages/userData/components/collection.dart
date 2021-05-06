@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:mini_dash/screens/document/document_screen.dart';
+import 'package:mini_dash/pages/document/document_screen.dart';
 
-class CollectioListScreen extends StatelessWidget {
+class Collectio extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

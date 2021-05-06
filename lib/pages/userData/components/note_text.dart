@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class NoteScreen extends StatelessWidget {
+class NoteText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

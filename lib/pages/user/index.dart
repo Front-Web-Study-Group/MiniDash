@@ -3,10 +3,11 @@ import 'package:mini_dash/components/loading.dart';
 import 'package:mini_dash/utils/constants.dart';
 import 'package:mini_dash/components/header.dart';
 import 'package:mini_dash/models/User.dart';
-import 'package:mini_dash/screens/user/component/user_card.dart';
 
-class UserScreen extends StatelessWidget {
-  const UserScreen({Key key, this.dropdownValue}) : super(key: key);
+import 'component/user_card.dart';
+
+class UserPage extends StatelessWidget {
+  const UserPage({Key key, this.dropdownValue}) : super(key: key);
 
   Future<String> mockNetworkData() async {
     return Future.delayed(Duration(seconds: 2), () => "我是从互联网上获取的数据");
@@ -27,9 +28,7 @@ class UserScreen extends StatelessWidget {
       children: [
         Container(
           color: kPrimaryColor,
-          child: Header(
-            route: 'user',
-          ),
+          child: Header(),
         ),
 
         Loading(),

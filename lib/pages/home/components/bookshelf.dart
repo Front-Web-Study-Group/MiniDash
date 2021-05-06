@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:mini_dash/application.dart';
+import 'package:mini_dash/components/header.dart';
 import 'package:mini_dash/models/docset/docset_model.dart';
 import 'package:mini_dash/routers/navigator_utils.dart';
 import 'package:mini_dash/routers/router_info.dart';
 import 'package:mini_dash/utils/constants.dart';
 import 'package:provider/provider.dart';
-import 'package:mini_dash/pages/docset/index.dart';
 
 class Bookshelf extends StatelessWidget {
   renderTips() {
@@ -23,8 +23,14 @@ class Bookshelf extends StatelessWidget {
   Widget build(BuildContext context) {
     var downloadRepoData = context.watch<DocsetModel>().downloadRepoData;
 
-    return Scaffold(
-      body: Padding(
+    return Column(children: [
+      Container(
+        color: kPrimaryColor,
+        child: Header(),
+      ),
+      Expanded(
+          child: Scaffold(
+              body: Padding(
         padding: const EdgeInsets.only(
           left: kDefaultPadding / 3,
           right: kDefaultPadding / 3,
@@ -58,7 +64,7 @@ class Bookshelf extends StatelessWidget {
                     ),
                   );
                 }),
-      ),
-    );
+      )))
+    ]);
   }
 }

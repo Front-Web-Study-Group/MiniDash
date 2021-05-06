@@ -3,11 +3,7 @@ import 'package:mini_dash/components/search_box.dart';
 import '../utils/constants.dart';
 
 class Header extends StatelessWidget {
-  const Header({
-    Key key,
-    @required this.route,
-  }) : super(key: key);
-  final String route;
+  const Header({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

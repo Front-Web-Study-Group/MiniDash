@@ -4,6 +4,7 @@ import 'package:mini_dash/models/docset/repos/repo.dart';
 import 'package:mini_dash/pages/docset/webview.dart';
 import 'package:mini_dash/pages/home/index.dart';
 import 'package:mini_dash/pages/docset/index.dart';
+import 'package:mini_dash/pages/repos/index.dart';
 
 import 'docset/types.dart';
 
@@ -54,9 +55,20 @@ class DocsetWebviewRouter extends IRouterProvider {
   }
 }
 
+class ReposRouter extends IRouterProvider {
+  @override
+  void initRouter(FluroRouter router) {
+    router.define(RouterConst.repos,
+        handler: Handler(handlerFunc: (context, params) {
+      return ReposPage();
+    }));
+  }
+}
+
 final List<IRouterProvider> listRouter = [
   HomeRouter(),
   DocsetRouter(),
   DocsetTypesRouter(),
-  DocsetWebviewRouter()
+  DocsetWebviewRouter(),
+  ReposRouter()
 ];

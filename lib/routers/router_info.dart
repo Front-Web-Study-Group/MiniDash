@@ -18,4 +18,5 @@ class RouterConst {
   static const docset = "/docset";
   static const docsetTypes = "/docset/types";
   static const docsetWebview = "/docset/webview";
+  static const repos = "/repos";
 }

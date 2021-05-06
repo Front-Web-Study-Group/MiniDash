@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:mini_dash/models/docset/docset_model.dart';
-import './components/repo_download.dart';
+import 'components/download_btn.dart';
 import 'package:provider/provider.dart';
 
-class ReposScreen extends StatelessWidget {
+class ReposPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var repoData = context.watch<DocsetModel>().repoData;

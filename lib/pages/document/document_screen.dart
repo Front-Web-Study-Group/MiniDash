@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mini_dash/models/Document.dart';
-import 'package:mini_dash/screens/document/components/document_card.dart';
-import 'package:mini_dash/screens/document/document_info.dart';
+
+import 'components/document_card.dart';
+import 'document_info.dart';
 
 class DocumentScreen extends StatelessWidget {
   @override
