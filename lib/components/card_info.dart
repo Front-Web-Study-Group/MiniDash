@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:mini_dash/screens/note/note_screen.dart';
-import 'package:webview_flutter/webview_flutter.dart';
 
 class CardInfo extends StatelessWidget {
   @override
@@ -49,7 +47,7 @@ class CardInfo extends StatelessWidget {
             ],
           )
         ],
-        secondaryActions: <Widget>[NoteScreen()],
+        // secondaryActions: <Widget>[NoteScreen()],
       ),
     );
   }

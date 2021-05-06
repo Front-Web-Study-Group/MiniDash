@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mini_dash/screens/demo/file.dart';
-import 'package:mini_dash/screens/demo/http.dart';
+import 'package:mini_dash/pages/demo/file.dart';
+import 'package:mini_dash/pages/demo/http.dart';
 
 class Demo {
   final String name, image;

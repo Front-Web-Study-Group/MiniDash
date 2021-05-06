@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:mini_dash/screens/user/component/feedback_detail.dart';
-import 'package:mini_dash/screens/user/feedback_screen.dart';
-import 'package:mini_dash/screens/user/login_screen.dart';
-import 'package:mini_dash/screens/user/setup/clear_cache_screen.dart';
-import 'package:mini_dash/screens/user/setup/network_diagnosis_screen.dart';
-import 'package:mini_dash/screens/user/setup/theme_screen.dart';
-import 'package:mini_dash/screens/user/setup/update_screen.dart';
-import 'package:mini_dash/screens/user/setup_screen.dart';
+import 'package:mini_dash/pages/user/component/feedback_detail.dart';
+import 'package:mini_dash/pages/user/feedback_screen.dart';
+import 'package:mini_dash/pages/user/login_screen.dart';
+import 'package:mini_dash/pages/user/setup/clear_cache_screen.dart';
+import 'package:mini_dash/pages/user/setup/network_diagnosis_screen.dart';
+import 'package:mini_dash/pages/user/setup/theme_screen.dart';
+import 'package:mini_dash/pages/user/setup/update_screen.dart';
+import 'package:mini_dash/pages/user/setup_screen.dart';
 
 class User {
   final String name;
@@ -75,11 +75,11 @@ Future<bool> _logoutPanel({contexts}) {
           ],
         ),
         actions: <Widget>[
-          FlatButton(
+          TextButton(
             child: Text("取消"),
             onPressed: () => Navigator.of(context).pop(), //关闭对话框
           ),
-          FlatButton(
+          TextButton(
             child: Text("确认"),
             onPressed: () {
               // ... 执行删除操作
@@ -252,19 +252,19 @@ Future<int> _rewardPanel({contexts, imgIndex}) {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                RaisedButton(
+                ElevatedButton(
                   child: Text("感谢老板"),
                   onPressed: () {
                     imgIndex = 0;
                   },
                 ),
-                RaisedButton(
+                ElevatedButton(
                   child: Text("加倍"),
                   onPressed: () {
                     imgIndex = 1;
                   },
                 ),
-                RaisedButton(
+                ElevatedButton(
                   child: Text("超级加倍"),
                   onPressed: () {
                     imgIndex = 2;
