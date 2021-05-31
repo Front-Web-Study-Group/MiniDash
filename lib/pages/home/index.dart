@@ -33,15 +33,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: pages[currentIndex],
-        bottomNavigationBar: SizedBox(
-          height: 100,
-          child: BottomNavigationBar(
-            fixedColor: Colors.blue[300],
-            currentIndex: this.currentIndex,
-            items: items,
-            onTap: _changePage,
-          ),
-        ));
+      body: pages[currentIndex],
+    );
   }
 }
